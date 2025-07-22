@@ -28,13 +28,13 @@ window.addEventListener("load", function () {
   const hasLoaded = sessionStorage.getItem("hasLoadedOnce");
 
   if (!hasLoaded) {
-    // 첫 진입 시 (hasLoaded가 없을 때) → 1.5초 뒤 부드럽게 숨기고 세션 플래그 설정
+    // 첫 접속 시 → 3초 동안 표시 후 숨김
     setTimeout(() => {
       loadingEl.classList.add("hidden");
       sessionStorage.setItem("hasLoadedOnce", "true");
-    }, 3000);
+    }, 3000); // 3초 표시
   } else {
-    // 새로고침 시 → 즉시 숨기기
+    // 두 번째 접속부터는 바로 숨기기
     loadingEl.classList.add("hidden");
   }
 });
