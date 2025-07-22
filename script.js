@@ -23,8 +23,18 @@ function cycleTexts() {
 cycleTexts();
 setInterval(cycleTexts, 21300);
 
-  window.addEventListener("load", function () {
-      setTimeout(() => {
-        document.getElementById("loading").classList.add("hidden");
-      }, 1500);
-    });
+window.addEventListener("load", function () {
+  const loadingEl = document.getElementById("loading");
+  const hasLoaded = sessionStorage.getItem("hasLoadedOnce");
+
+  if (!hasLoaded) {
+    // 첫 진입 시 (hasLoaded가 없을 때) → 1.5초 뒤 부드럽게 숨기고 세션 플래그 설정
+    setTimeout(() => {
+      loadingEl.classList.add("hidden");
+      sessionStorage.setItem("hasLoadedOnce", "true");
+    }, 3000);
+  } else {
+    // 새로고침 시 → 즉시 숨기기
+    loadingEl.classList.add("hidden");
+  }
+});
