@@ -38,6 +38,8 @@ window.addEventListener("load", function () {
     loadingEl.classList.add("hidden");
   }
 });
+
+
 //카테고리 클릭시 이동을 부드럽게 하는 애니메이션 스크립트(<ul class="sub-menu">)
 document.addEventListener('DOMContentLoaded', function () {
 
