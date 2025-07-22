@@ -1,0 +1,133 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: rgb(255, 255, 255);
+  min-height: 100vh;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-bottom: solid black 2px;
+  margin: 0 120px;
+}
+
+.logo img{
+  height: 100px;
+  width: auto;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-left: 20px;
+}
+
+.main-nav {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  font-size: 1.6875rem;
+  margin-right: 30px;
+  margin-top: 25px;
+  color: black;
+}
+
+.main-nav a {
+  color: black;        /* 링크 색을 검은색으로 */
+  text-decoration: none;  /* 밑줄 제거 */
+}
+
+.main-nav a:visited {
+  color: black;        /* 방문한 링크도 검은색 */
+}
+
+.main-nav a:hover {
+  color: #555;         /* 마우스 올렸을 때는 약간 회색 (선택사항) */
+}
+
+.main-nav a:active {
+  color: black;        /* 클릭 중일 때도 검은색 유지 */
+}
+
+main {
+  height: 500px;
+}
+
+/* 스크롤 컨테이너 */
+.scroll-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-size: 6rem;
+  font-weight: bold;
+}
+.horizontal-text,
+.horizontal-text.second {
+  color: rgb(170, 190, 150);
+
+}
+
+/* 첫 번째 문장 (위쪽) */
+.horizontal-text {
+  white-space: nowrap;
+  position: absolute;
+  top: 20%;
+  animation: scroll-horizontal 13s linear forwards;
+}
+
+/* 두 번째 문장 (아래쪽) */
+.horizontal-text.second {
+  white-space: nowrap;
+  position: absolute;
+  top: 60%;
+  animation: scroll-horizontal-second 10s linear forwards;
+}
+
+
+/* 가로 스크롤 애니메이션 */
+/* 첫 번째 애니메이션 */
+@keyframes scroll-horizontal {
+  0% { transform: translateX(100%); opacity: 1; }
+  100% { transform: translateX(-150%); opacity: 1; }
+}
+
+/* 두 번째 애니메이션 */
+@keyframes scroll-horizontal-second {
+  0% { transform: translateX(140%); opacity: 1; }
+  100% { transform: translateX(-150%); opacity: 1; }
+}
+
+/* 숨김 처리 */
+.hidden {
+  display: none;
+}
+
+
+    #loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: bold;
+      z-index: 9999;
+      transition: opacity 0.5s ease; /* 부드럽게 사라지게 */
+    }
+
+    #loading.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
