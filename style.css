@@ -56,53 +56,55 @@ header {
 main {
   height: 500px;
 }
-
-/* 스크롤 컨테이너 */
+/* CSS */
 .scroll-container {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  font-size: 6rem;
-  font-weight: bold;
-}
-.horizontal-text,
-.horizontal-text.second {
-  color: rgb(170, 190, 150);
+  overflow: hidden;           /* 넘치는 부분 숨기기 */
+  width: 100%;                /* 컨테이너 너비 */
 
 }
 
-/* 첫 번째 문장 (위쪽) */
-.horizontal-text {
+
+.scrollphoto,
+.scrolling-text {
+  display: inline-block;
   white-space: nowrap;
-  position: absolute;
-  top: 20%;
-  animation: scroll-horizontal 13s linear forwards;
+  top: 0;
+  left: 0;
+}
+.scrollphoto {
+  animation: scroll 32s linear infinite;
+}
+
+.scrollphoto img {
+  margin-top: 30px;
+  height: 150px;       /* 필요에 맞게 크기 조절 */
+  margin-right: 300px;  /* 이미지 사이 간격 */
+  border-radius: 50%;
+}
+
+.scrolling-text {
+  font-size: 13rem;
+  display: inline-block;      /* 가로로 이어붙이기 */
+  white-space: nowrap;        /* 줄 바꿈 금지 */
+  animation: scroll 30s linear infinite;
+  color: rgb(170, 190, 150);
+  
+}
+@keyframes scrollphoto {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+.scrolling-text span {
+  padding-right: 120px;        /* 두 문장 사이 간격 조정 */
 }
 
 /* 두 번째 문장 (아래쪽) */
-.horizontal-text.second {
-  white-space: nowrap;
-  position: absolute;
-  top: 60%;
-  animation: scroll-horizontal-second 10s linear forwards;
-}
-
 
 /* 가로 스크롤 애니메이션 */
 /* 첫 번째 애니메이션 */
-@keyframes scroll-horizontal {
-  0% { transform: translateX(100%); opacity: 1; }
-  100% { transform: translateX(-150%); opacity: 1; }
-}
-
-/* 두 번째 애니메이션 */
-@keyframes scroll-horizontal-second {
-  0% { transform: translateX(140%); opacity: 1; }
-  100% { transform: translateX(-150%); opacity: 1; }
+@keyframes scroll {
+  0%   { transform: translateX(0%); }
+  100% { transform: translateX(-100%); } /* 전체 내용의 절반(=한 문장 분량)만큼 이동 */
 }
 
 /* 숨김 처리 */
