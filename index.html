@@ -8,13 +8,14 @@
         document.head.appendChild(style);
       }
     })();
-</script>
+  </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script>
     $(function(){
       $("#header-container").load("header.html");
     });
   </script>
+  <link rel="icon" href="photo/favicon.ico" type="image/x-icon">
 </head>
 <body>
   <div id="loading">メガネパーティー</div>
@@ -23,11 +24,25 @@
   <div id="header-container"></div>
   <main>
  
-   <div class="scroll-container">
-      <div class="horizontal-text" id="text1">楽をする、楽しむ為の努力は惜しまない</div>
-      <div class="horizontal-text second hidden" id="text2">継続こそが成功の秘訣</div>
-    </div>
+<div class="scroll-container">
+  <div class="scrollphoto">
+    <img src="photo/osaka5.jpg" class="slide-image" alt="Moving photo">
+    <img src="photo/photo.jpg" class="slide-image" alt="Moving photo">
+    <img src="photo/osaka.jpg" class="slide-image" alt="Moving photo">
 
+    <img src="photo/osaka5.jpg" class="slide-image" alt="Moving photo 1">
+    <img src="photo/photo.jpg" class="slide-image" alt="Moving photo 1">
+    <img src="photo/osaka.jpg" class="slide-image" alt="Moving photo 1">
+
+    
+  </div>
+  <div class="scrolling-text">
+    <span>楽をする、楽しむ為の努力は惜しまない</span>
+    <span>継続こそが成功の秘訣</span>
+    <span>楽をする、楽しむ為の努力は惜しまない</span>
+    <span>継続こそが成功の秘訣</span>
+  </div>
+</div>
     
   </main>
 
