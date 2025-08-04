@@ -1,0 +1,73 @@
+<!--HTML-->
+<!DOCTYPE html>
+<html lang="ja">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="profilestyle.css">
+    <title>Portfolio Website</title>
+</head>
+<body>
+    <header>
+              <div class="logo">
+        <a href="index.html">
+            <IMG src="photo/FUSE_NAME.jpg"></a>
+        </div>
+
+        <nav>
+            <a href="#" class="active"> Home</a>
+            <a href="#" >Services</a>
+            <a href="#" >Skills</a>
+            <a href="#" >Education</a>
+            <a href="#" >Experience</a>
+            <a href="#" >Contact</a>
+        </nav>
+    </header>
+    <section class="home">
+        <div class="home-img">
+            <img src="photo/photo.jpg" alt="">
+        </div>
+        <div class="home-content">
+            <h1>私は <span>布施啓</span></h1>
+            <h3 class="typing-text">私は <span id="changing-text">楽をする。楽しむ為の努力は惜しまない</span></h3>
+            <p>-
+- 年齢：55歳（戌年）<br>
+- 出身地：千葉県 <br>
+- 家族<br>
+- 性格<br>
+    - MBTI：ENFJ（主人公）<br>
+    - LIFO：A/D
+</p>
+
+        </div>
+    </section>
+</body>
+<footer>
+    <div class="wrapper">
+      <p class="footer"><small>© 2025　メガネパーティー</small></p>
+    </div>
+  </footer>
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const textElement = document.getElementById("changing-text");
+  const texts = [
+    "楽をする。楽しむ為の努力は惜しまない",
+    "その惜しまない努力をずっと継続する",
+    "常に少しずつ変化をつけながら続ける"
+  ];
+  let index = 0;
+
+  function updateText() {
+    textElement.textContent = texts[index];
+    index = (index + 1) % texts.length;
+  }
+
+  setInterval(updateText, 3000);
+});
+  </script>
+</html>
+<!--끝-->
+
