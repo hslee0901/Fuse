@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -11,8 +12,18 @@ header {
   align-items: center;
   justify-content: space-between;
   padding-top: 10px;
-  border-bottom: solid black 2px;
+  border-bottom: solid black 3px;
   margin: 0 120px;
+}
+footer{
+
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+  height: 30px;
+  border-bottom: solid black 3px;
+  margin: 0 120px;
+  margin-bottom: 30px;
 }
 
 .logo img{
@@ -53,59 +64,72 @@ header {
   color: black;        /* 클릭 중일 때도 검은색 유지 */
 }
 
+.main-nav span {
+  font-family: 'Noto Sans JP', 'Hachi Maru Pop', 'Yu Gothic', 'メイリオ', sans-serif;
+}
+
 main {
-  height: 500px;
+  height: 700px;
 }
 /* CSS */
 .scroll-container {
   overflow: hidden;           /* 넘치는 부분 숨기기 */
   width: 100%;                /* 컨테이너 너비 */
-
 }
 
+.scrollphoto{
+  display: flex; /* 이미지들을 가로로 배열 */
+  width: max-content; /* 컨테이너가 모든 이미지의 너비를 포함하도록 설정 */
+  animation: scrollImages 40s linear infinite; /* 이미지 스크롤 애니메이션 적용 */
+  margin-top: 30px;
+}
 
-.scrollphoto,
+.bottom-photos {
+  margin-top: 30px; 
+}
+
 .scrolling-text {
   display: inline-block;
   white-space: nowrap;
   top: 0;
   left: 0;
 }
-.scrollphoto {
-  animation: scroll 32s linear infinite;
-}
 
 .scrollphoto img {
   margin-top: 30px;
   height: 150px;       /* 필요에 맞게 크기 조절 */
-  margin-right: 300px;  /* 이미지 사이 간격 */
+  margin-right: 200px;  /* 이미지 사이 간격 */
   border-radius: 50%;
 }
 
 .scrolling-text {
-  font-size: 13rem;
+  font-size: 14rem;
   display: inline-block;      /* 가로로 이어붙이기 */
   white-space: nowrap;        /* 줄 바꿈 금지 */
-  animation: scroll 30s linear infinite;
-  color: rgb(170, 190, 150);
-  
+  animation: scrollText 55s linear infinite; /* 텍스트 스크롤 애니메이션 이름 변경 (가독성 향상) */
+  font-family: "ms mincho", sans-serif;
+  font-weight: 1000;
+  font-style: bold;
+  color: rgb(81, 97, 65);
+  margin-top: 30px;
 }
-@keyframes scrollphoto {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
-}
+
 .scrolling-text span {
   padding-right: 120px;        /* 두 문장 사이 간격 조정 */
 }
 
-/* 두 번째 문장 (아래쪽) */
-
-/* 가로 스크롤 애니메이션 */
-/* 첫 번째 애니메이션 */
-@keyframes scroll {
-  0%   { transform: translateX(0%); }
-  100% { transform: translateX(-100%); } /* 전체 내용의 절반(=한 문장 분량)만큼 이동 */
+/* 일반적인 가로 스크롤 애니메이션 (텍스트에 사용) */
+@keyframes scrollText {
+  0%   { transform: translateX(1%); }
+  100% { transform: translateX(-50%); } /* 전체 내용의 절반만큼 이동 */
 }
+
+/* 이미지들을 위한 새로운 애니메이션 */
+@keyframes scrollImages {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* 전체 콘텐츠 너비의 절반만큼 이동하여 루프 */
+}
+
 
 /* 숨김 처리 */
 .hidden {
@@ -119,11 +143,10 @@ main {
       left: 0;
       width: 100%;
       height: 100%;
-      background: white;
+      background: rgb(255, 255, 255);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
       font-weight: bold;
       z-index: 9999;
       transition: opacity 0.5s ease; /* 부드럽게 사라지게 */
@@ -133,3 +156,87 @@ main {
       opacity: 0;
       pointer-events: none;
     }
+.loading h1{
+  font-size: 350px;
+}
+
+.wave-text{
+  color: rgb(253, 153, 95);
+}
+
+.wave-text span {
+    display: inline-block;
+    font-size: 8rem;
+    animation: wave 2s ease-in-out infinite;
+}
+
+.wave-text span:nth-child(1) {
+    animation-delay: 0s;
+}
+.wave-text span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.wave-text span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+.wave-text span:nth-child(4) {
+    animation-delay: 0.6s;
+}
+.wave-text span:nth-child(5) {
+    animation-delay: 0.8s;
+}
+.wave-text span:nth-child(6) {
+    animation-delay: 1.0s;
+}
+.wave-text span:nth-child(7) {
+    animation-delay: 1.2s;
+}
+.wave-text span:nth-child(8) {
+    animation-delay: 1.4s;
+}
+
+@keyframes wave {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(30px);
+    }
+}
+.profile {
+  display: flex;
+  justify-content: center; /* 양쪽 끝이 아닌 가운데 정렬 */
+  align-items: flex-start;
+  gap: 50px; /* 사진과 PR 사이 간격 */
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.profile-photo img {
+  width: 500px; /* 원하는 너비로 조정 (예: 200px) */
+  height: auto;
+  border-radius: 10px; /* 모서리 둥글게 (선택사항) */
+  margin-left: 50px; /* 왼쪽 여백 */
+}
+
+.page-title1 {
+  font-size: 2rem;
+  font-family: Arial, sans-serif;
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+.profile.wrapper {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.profile.wrapper.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.footer{
+  text-align: center;
+}
