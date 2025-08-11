@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="header.css">
+    <title>interview</title>
+</head>
+
+<!-- 헤더 스크립트 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="script.js"></script>
+
+<body>
+    <!-- 로딩 -->
+    <div id="loading" style="display: none;">
+        <h1 class="wave-text">
+            <span>メ</span>
+            <span>ガ</span>
+            <span>ネ</span>
+            <span>パ</span>
+            <span>ー</span>
+            <span>テ</span>
+            <span>ィ</span>
+            <span>ー</span>
+        </h1>
+    </div>
+    
+    <!-- 헤더 -->
+    <div id="header-container"></div>
+
+    <!-- 컨테이너 -->
+    <div class="container">
+        <div class="row">
+        <div class="col-md-12">
+            <div class="fb-profile-block">
+                <div class="fb-profile-block-thumb cover-container"></div>
+                <div class="profile-img">
+                    <a href="#">
+                        <img src="./images/自転車2.jpg" alt="" title="">        
+                    </a>
+                </div>
+                <div class="profile-name">
+                    <h2>布施　啓</h2>
+                </div>
+                
+                <div class="fb-profile-block-menu">
+                    <div class="block-menu">
+                        <ul>
+                            <li><a href="#">Timeline</a></li>
+                            <li><a href="#">about</a></li>
+                            <li><a href="#">Friends</a></li>
+                            <li><a href="#">Photos</a></li>
+                            <li><a href="#">More...</a></li>
+                        </ul>
+                    </div>
+                    <div class="block-menu">
+                        <ul>
+                            <li><a href="#">Timeline</a></li>
+                            <li><a href="#">about</a></li>
+                            <li><a href="#">Friends</a></li>
+                            <li><a href="#">Photos</a></li>
+                            <li><a href="#">More...</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="middle-panel">
+
+
+            <div class="post">
+            <div class="post-top">
+                <div class="dp">
+                    <img src="./images/boy.jpg" alt="">
+                </div>
+                <div class="post-info">
+                    <p class="name">Priyank Saksena</p>
+                    <span class="time">1 week ago</span>
+                </div>
+                <i class="fas fa-ellipsis-h"></i>
+            </div>
+            <div class="post-content">
+                Happy birthday dear
+                <img src="./images/girl_with_light.jpg" alt="Mountains">
+            </div>
+            <div class="post-bottom">
+                <div class="action">
+                    <i class="far fa-thumbs-up"></i>
+                    <span>Like</span>
+                </div>
+                <div class="action">
+                    <i class="far fa-comment"></i>
+                    <span>Comment</span>
+                </div>
+                <div class="action">
+                    <i class="fa fa-share"></i>
+                    <span>Share</span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="story-section">
+
+            <div class="story create">
+                <div class="dp-image">
+                    <img src="./images/dp.jpg" alt="Profile pic">
+                </div>
+                <span class="dp-container">
+                    <i class="fa fa-plus"></i>
+                </span>
+                <span class="name">Create Story</span>
+            </div>
+
+
+            <div class="story">
+                <img src="./images/현성_profile.jpg" alt="Anuska's story">
+                <div class="dp-container">
+                    <img src="./images/현성_profile.jpg" alt="">
+                </div>
+                <p class="name">Lee Hyeonseong</p>
+            </div>
+
+            <div class="story">
+                <img src="./images/경연_profile.jpg" alt="Story image">
+                <span class="dp-container">
+                    <img src="./images/경연_profile.jpg" alt="Profile pic">
+                </span>
+                <span class="name">Lee Kyungyeon</span>
+            </div>
+
+            <div class="story">
+                <img src="./images/정재_profile.jpg" alt="Story image">
+                <span class="dp-container">
+                    <img src="./images/정재_profile.jpg" alt="Profile pic">
+                </span>
+                <span class="name">Kim jeongjae</span>
+            </div>
+
+            <div class="story">
+                <img src="./images/승훈_profile.jpg" alt="Story image">
+                <span class="dp-container">
+                    <img src="./images/승훈_profile.jpg" alt="Profile pic">
+                </span>
+                <span class="name">Baek seunghun</span>
+            </div>
+        </div>
+
+        </div>
+    
+    </div>
+      <script src="script.js"></script>
+
+<div id="storyModal" class="modal" aria-hidden="true">
+  <div class="modal-backdrop" data-close="true"></div>
+  <div class="modal-dialog" role="dialog" aria-modal="true">
+    <button class="modal-close" aria-label="Close" data-close="true">×</button>
+
+    <!-- 고정 프레임 -->
+    <div class="modal-media">
+      <img class="modal-img" src="" alt="">
+    </div>
+
+    <p class="modal-name"></p>
+  </div>
+</div>
+
+      
+</body>
+
+</html>
