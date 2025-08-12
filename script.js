@@ -1,6 +1,5 @@
-// 한 번만 실행되는 안전한 초기화
+/* ================== 1) 로딩 스플래시 ================== */
 document.addEventListener('DOMContentLoaded', () => {
-  /* ================== 1) 로딩 스플래시 ================== */
   const loadingEl = document.getElementById('loading');
   if (loadingEl) {
     const hasLoaded = sessionStorage.getItem('hasLoadedOnce');
@@ -29,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const fillModal = (data) => {
       if (modalImg) {
         modalImg.src = data.photo || '';
-        // 현성이의 이미지 position만 따로 조정
         modalImg.style.objectPosition = data.photo.includes('현성') ? '50% 50%' : '50% 30%';
       }
       if (nameEl) nameEl.textContent = `NAME: ${data.name || ''}`;
@@ -37,12 +35,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if (likeEl) likeEl.textContent = `Like: ${data.like || ''}`;
       if (reviewEl) reviewEl.textContent = data.review || '';
       modal.classList.add('open');
-      document.body.style.overflow = 'hidden'; // body 스크롤 막기
+      document.body.style.overflow = 'hidden';
     };
 
     const closeModal = () => {
       modal.classList.remove('open');
-      document.body.style.overflow = ''; // body 스크롤 허용
+      document.body.style.overflow = '';
     };
 
     const storyTargets = document.querySelectorAll('.story');
@@ -62,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // 배경/닫기 버튼, ESC로 닫기
     modal.addEventListener('click', (e) => {
       if (e.target.dataset.close === 'true') closeModal();
     });
@@ -74,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 /* ================== 3) 헤더 내 .nav-item 호버 ================== */
 const initNavHover = () => {
   const items = document.querySelectorAll('.nav-item');
-  if (!items.length) return false;
+  if (!items.length) return;
   items.forEach((item, index) => {
     item.addEventListener('mouseenter', () => {
       items.forEach((el, i) => {
@@ -88,24 +85,14 @@ const initNavHover = () => {
       items.forEach(el => el.classList.remove('left', 'right', 'active'));
     });
   });
-  return true;
 };
-// 이미 로드됐으면 즉시, 아니면 header-container 변화 감지 후 바인딩
-if (!initNavHover()) {
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      if (mutation.addedNodes.length) {
-        initNavHover();
-        observer.disconnect();
-      }
-    });
-  });
-  observer.observe(document.getElementById('header-container'), { childList: true });
-}
 
-/* ================== 4) 헤더 로드 및 아이콘 변경 로직 추가 ================== */
+/* ================== 4) 헤더 로드 및 아이콘 변경 로직 ================== */
 $(function () {
   $("#header-container").load("header.html", function () {
+    // 헤더 로드 완료 후, 호버 기능 초기화
+    initNavHover();
+
     const currentPage = location.pathname.split("/").pop() || "index.html";
     const navItems = document.querySelectorAll("#header-container .nav-item");
 
