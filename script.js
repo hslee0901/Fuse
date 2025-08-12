@@ -6,9 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!hasLoaded) {
       loadingEl.style.display = 'flex';
       setTimeout(() => {
-        loadingEl.classList.add('hidden'); // opacity 트랜지션용 클래스
+        loadingEl.classList.add('hidden');
         sessionStorage.setItem('hasLoadedOnce', 'true');
-        // 트랜지션 끝난 뒤 DOM에서 제거(0.5s 정도 여유)
         setTimeout(() => { loadingEl.remove(); }, 600);
       }, 5000);
     } else {
@@ -20,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const modal = document.getElementById('storyModal');
   if (modal) {
     const modalImg   = modal.querySelector('.modal-img');
-    const nameEl     = modal.querySelector('.modal-name');       // "NAME: xxx"
+    const nameEl     = modal.querySelector('.modal-name');
     const mbtiEl     = modal.querySelector('.modal-mbti');
     const likeEl     = modal.querySelector('.modal-like');
     const reviewEl   = modal.querySelector('.modal-review-text');
@@ -90,7 +89,6 @@ const initNavHover = () => {
 /* ================== 4) 헤더 로드 및 아이콘 변경 로직 ================== */
 $(function () {
   $("#header-container").load("header.html", function () {
-    // 헤더 로드 완료 후, 호버 기능 초기화
     initNavHover();
 
     const currentPage = location.pathname.split("/").pop() || "index.html";
@@ -109,5 +107,97 @@ $(function () {
         }
       }
     });
+
+    /* ✅ 헤더 로드 후 검색 버튼 이벤트 등록 */
+    initSearchFeature();
   });
 });
+
+/* ================== 5) 검색 기능 추가 ================== */
+function initSearchFeature() {
+  const searchBtn = document.getElementById('searchBtn');
+  const searchInput = document.getElementById('searchInput');
+
+  if (!searchBtn || !searchInput) return;
+
+  searchBtn.addEventListener('click', () => {
+    removeHighlights(document.body);
+
+    const keyword = searchInput.value.trim();
+    if (!keyword) return;
+
+    const pages = ['index.html', 'company.html', 'life.html', 'advice.html'];
+    const currentPage = location.pathname.split("/").pop() || "index.html";
+
+    let targetPage = null;
+
+    Promise.all(
+      pages.map(page =>
+        fetch(page)
+          .then(res => res.text())
+          .then(html => {
+            if (!targetPage && html.includes(keyword)) {
+              targetPage = page;
+            }
+          })
+          .catch(err => console.error(`Failed to fetch ${page}:`, err))
+      )
+    ).then(() => {
+      if (targetPage) {
+        if (targetPage === currentPage) {
+          // 현재 페이지이면 페이지 이동 없이 바로 강조 + 스크롤
+          highlightText(document.body, keyword);
+          scrollToFirstHighlight();
+        } else {
+          // 다른 페이지면 localStorage 저장 후 페이지 이동
+          localStorage.setItem('searchKeyword', keyword);
+          window.location.href = targetPage + '#searchResult';
+        }
+      } else {
+        alert('검색 결과가 없습니다.');
+      }
+    });
+  });
+
+  // 페이지 로드 시 localStorage에 검색어가 있으면 강조 + 스크롤
+  const storedKeyword = localStorage.getItem('searchKeyword');
+  if (storedKeyword) {
+    highlightText(document.body, storedKeyword);
+    scrollToFirstHighlight();
+    localStorage.removeItem('searchKeyword');
+  }
+}
+
+function highlightText(element, keyword) {
+  const regex = new RegExp(`(${keyword})`, 'gi');
+  const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
+  const nodes = [];
+  while (walker.nextNode()) {
+    if (walker.currentNode.nodeValue.match(regex)) {
+      nodes.push(walker.currentNode);
+    }
+  }
+  nodes.forEach(node => {
+    const span = document.createElement('span');
+    span.innerHTML = node.nodeValue.replace(regex, `<mark>$1</mark>`);
+    node.parentNode.replaceChild(span, node);
+  });
+}
+
+// ✅ 첫 번째 <mark> 위치로 스크롤
+function scrollToFirstHighlight() {
+  const firstMark = document.querySelector('mark');
+  if (firstMark) {
+    firstMark.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
+    });
+  }
+}
+
+function removeHighlights(element) {
+  const marks = element.querySelectorAll('mark');
+  marks.forEach(mark => {
+    mark.replaceWith(document.createTextNode(mark.textContent));
+  });
+}

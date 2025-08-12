@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
         integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -17,28 +17,7 @@
 
 <!-- 헤더 스크립트 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script>
-    $(function(){
-    $("#header-container").load("header.html", function() {
-        const items = document.querySelectorAll('.nav-item');
-
-        items.forEach((item, index) => {
-        item.addEventListener('mouseenter', () => {
-            items.forEach((el, i) => {
-            el.classList.remove('left', 'right', 'active');
-            if (i < index) el.classList.add('left');
-            else if (i > index) el.classList.add('right');
-            else el.classList.add('active');
-            });
-        });
-
-        item.addEventListener('mouseleave', () => {
-            items.forEach(el => el.classList.remove('left', 'right', 'active'));
-        });
-        });
-    });
-    });
-</script>
+<script src="script.js"></script>
 
 <body>
     <!-- 로딩 -->
@@ -76,22 +55,13 @@
                 <div class="fb-profile-block-menu">
                     <div class="block-menu">
                         <ul>
-                            <li><a href="#">Timeline</a></li>
-                            <li><a href="#">about</a></li>
-                            <li><a href="#">Friends</a></li>
-                            <li><a href="#">Photos</a></li>
-                            <li><a href="#">More...</a></li>
+                            <li><a href="index.html">Profile</a></li>
+                            <li><a href="company.html">Company</a></li>
+                            <li><a href="life.html">Life</a></li>
+                            <li><a href="advice.html">Advice</a></li>
                         </ul>
                     </div>
-                    <div class="block-menu">
-                        <ul>
-                            <li><a href="#">Timeline</a></li>
-                            <li><a href="#">about</a></li>
-                            <li><a href="#">Friends</a></li>
-                            <li><a href="#">Photos</a></li>
-                            <li><a href="#">More...</a></li>
-                        </ul>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -133,6 +103,36 @@
             </div>
         </div>
 
+        <div class="post">
+            <div class="post-top">
+                <div class="dp">
+                    <img src="./images/自転車2.jpg" alt="">
+                </div>
+                <div class="post-info">
+                    <p class="name">Fuse Hiraku</p>
+                    <span class="time">1 week ago</span>
+                </div>
+                <i class="fas fa-ellipsis-h"></i>
+            </div>
+            <div class="post-content">
+                Happy birthday dear
+                <img src="./images/girl_with_light.jpg" alt="Mountains">
+            </div>
+            <div class="post-bottom">
+                <div class="action">
+                    <i class="far fa-thumbs-up"></i>
+                    <span>いいね！</span>
+                </div>
+                <div class="action">
+                    <i class="far fa-comment"></i>
+                    <span>コメント</span>
+                </div>
+                <div class="action">
+                    <i class="fa fa-share"></i>
+                    <span>シェア</span>
+                </div>
+            </div>
+        </div>
 
         <div class="story-section">
 
@@ -195,7 +195,6 @@
        
     
     </div>
-      <script src="script.js"></script>
 <div id="storyModal" class="modal" aria-hidden="true">
   <div class="modal-backdrop" data-close="true"></div>
 
