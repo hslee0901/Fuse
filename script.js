@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!hasLoaded) {
       loadingEl.style.display = 'flex';
       setTimeout(() => {
-        loadingEl.classList.add('hidden');              // opacity 트랜지션용 클래스
+        loadingEl.classList.add('hidden'); // opacity 트랜지션용 클래스
         sessionStorage.setItem('hasLoadedOnce', 'true');
         // 트랜지션 끝난 뒤 DOM에서 제거(0.5s 정도 여유)
         setTimeout(() => { loadingEl.remove(); }, 600);
@@ -29,43 +29,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const fillModal = (data) => {
       if (modalImg) {
         modalImg.src = data.photo || '';
-        modalImg.alt = data.name ? `${data.name} photo` : 'photo';
+        // 현성이의 이미지 position만 따로 조정
+        modalImg.style.objectPosition = data.photo.includes('현성') ? '50% 50%' : '50% 30%';
       }
-      if (nameEl)   nameEl.textContent   = `NAME: ${data.name || ''}`;
-      if (mbtiEl)   mbtiEl.textContent   = `MBTI: ${data.mbti || ''}`;
-      if (likeEl)   likeEl.textContent   = `Like: ${data.like  || ''}`;
+      if (nameEl) nameEl.textContent = `NAME: ${data.name || ''}`;
+      if (mbtiEl) mbtiEl.textContent = `MBTI: ${data.mbti || ''}`;
+      if (likeEl) likeEl.textContent = `Like: ${data.like || ''}`;
       if (reviewEl) reviewEl.textContent = data.review || '';
-    };
-
-    const openModal = (data) => {
-      if (data) fillModal(data);
       modal.classList.add('open');
-      modal.setAttribute('aria-hidden', 'false');
-      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden'; // body 스크롤 막기
     };
 
     const closeModal = () => {
       modal.classList.remove('open');
-      modal.setAttribute('aria-hidden', 'true');
-      document.documentElement.style.overflow = '';
+      document.body.style.overflow = ''; // body 스크롤 허용
     };
 
-    // 스토리 영역 클릭 위임
-    const storySection = document.querySelector('.story-section');
-    if (storySection) {
-      storySection.addEventListener('click', (e) => {
-        const card = e.target.closest('.story');
-        if (!card || card.classList.contains('create')) return;
-
-        // data-* 기본, 없으면 자식에서 fallback
-        const data = {
-          name:   card.dataset.name  || (card.querySelector('.name')?.textContent.trim() || ''),
-          photo:  card.dataset.photo || (card.querySelector('img')?.getAttribute('src') || ''),
-          mbti:   card.dataset.mbti  || '',
-          like:   card.dataset.like  || '',
-          review: card.dataset.review|| ''
-        };
-        openModal(data);
+    const storyTargets = document.querySelectorAll('.story');
+    if (storyTargets.length) {
+      storyTargets.forEach(target => {
+        target.addEventListener('click', () => {
+          const dataset = target.dataset;
+          const data = {
+            name: dataset.name || '',
+            photo: dataset.photo || '',
+            mbti: dataset.mbti || '',
+            like: dataset.like || '',
+            review: dataset.review || ''
+          };
+          fillModal(data);
+        });
       });
     }
 
@@ -77,81 +70,57 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
     });
   }
-
-  /* ================== 3) 헤더 내 .nav-item 호버 ================== */
-  const initNavHover = () => {
-    const items = document.querySelectorAll('.nav-item');
-    if (!items.length) return false;
-    items.forEach((item, index) => {
-      item.addEventListener('mouseenter', () => {
-        items.forEach((el, i) => {
-          el.classList.remove('left', 'right', 'active');
-          if (i < index) el.classList.add('left');
-          else if (i > index) el.classList.add('right');
-          else el.classList.add('active');
-        });
-      });
-      item.addEventListener('mouseleave', () => {
-        items.forEach(el => el.classList.remove('left', 'right', 'active'));
+});
+/* ================== 3) 헤더 내 .nav-item 호버 ================== */
+const initNavHover = () => {
+  const items = document.querySelectorAll('.nav-item');
+  if (!items.length) return false;
+  items.forEach((item, index) => {
+    item.addEventListener('mouseenter', () => {
+      items.forEach((el, i) => {
+        el.classList.remove('left', 'right', 'active');
+        if (i < index) el.classList.add('left');
+        else if (i > index) el.classList.add('right');
+        else el.classList.add('active');
       });
     });
-    return true;
-  };
+    item.addEventListener('mouseleave', () => {
+      items.forEach(el => el.classList.remove('left', 'right', 'active'));
+    });
+  });
+  return true;
+};
+// 이미 로드됐으면 즉시, 아니면 header-container 변화 감지 후 바인딩
+if (!initNavHover()) {
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.addedNodes.length) {
+        initNavHover();
+        observer.disconnect();
+      }
+    });
+  });
+  observer.observe(document.getElementById('header-container'), { childList: true });
+}
 
-  // 이미 로드됐으면 즉시, 아니면 header-container 변화 감지 후 바인딩
-  if (!initNavHover()) {
-    const headerContainer = document.getElementById('header-container');
-    if (headerContainer && 'MutationObserver' in window) {
-      const mo = new MutationObserver(() => {
-        if (initNavHover()) mo.disconnect();
-      });
-      mo.observe(headerContainer, { childList: true, subtree: true });
-    }
-  }
-});
-//아이콘 색 인식 기능
+/* ================== 4) 헤더 로드 및 아이콘 변경 로직 추가 ================== */
 $(function () {
   $("#header-container").load("header.html", function () {
     const currentPage = location.pathname.split("/").pop() || "index.html";
-
     const navItems = document.querySelectorAll("#header-container .nav-item");
-    console.log("navItems count:", navItems.length);
 
     navItems.forEach(item => {
       const link = item.getAttribute("href");
-      console.log("Checking link:", link);
-
       if (link && ((link === currentPage) || (currentPage === "index.html" && (link === "./" || link === "/")))) {
         item.classList.add("active-page");
-        console.log("Added active-page to:", link);
-
         const img = item.querySelector("img.custom-icon");
         if (img) {
           const srcUrl = new URL(img.src);
           const filename = srcUrl.pathname.split("/").pop().replace("_Black", "");
-          const newSrc = srcUrl.origin + srcUrl.pathname.replace(srcUrl.pathname.split("/").pop(), filename) + "?t=" + Date.now();
+          const newSrc = srcUrl.origin + srcUrl.pathname.replace(srcUrl.pathname.split("/").pop(), filename);
           img.src = newSrc;
-          console.log("Changed img src to:", newSrc);
         }
       }
     });
-
-    // 기존 hover 이벤트 등 유지
-    const items = document.querySelectorAll("#header-container .nav-item");
-    items.forEach((item, index) => {
-      item.addEventListener("mouseenter", () => {
-        items.forEach((el, i) => {
-          el.classList.remove("left", "right", "active");
-          if (i < index) el.classList.add("left");
-          else if (i > index) el.classList.add("right");
-          else el.classList.add("active");
-        });
-      });
-      item.addEventListener("mouseleave", () => {
-        items.forEach(el => el.classList.remove("left", "right", "active"));
-      });
-    });
   });
 });
-
-

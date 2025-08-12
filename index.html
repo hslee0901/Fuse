@@ -12,11 +12,33 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="header.css">
     <title>interview</title>
+    
 </head>
 
 <!-- 헤더 스크립트 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="script.js"></script>
+<script>
+    $(function(){
+    $("#header-container").load("header.html", function() {
+        const items = document.querySelectorAll('.nav-item');
+
+        items.forEach((item, index) => {
+        item.addEventListener('mouseenter', () => {
+            items.forEach((el, i) => {
+            el.classList.remove('left', 'right', 'active');
+            if (i < index) el.classList.add('left');
+            else if (i > index) el.classList.add('right');
+            else el.classList.add('active');
+            });
+        });
+
+        item.addEventListener('mouseleave', () => {
+            items.forEach(el => el.classList.remove('left', 'right', 'active'));
+        });
+        });
+    });
+    });
+</script>
 
 <body>
     <!-- 로딩 -->
@@ -92,21 +114,21 @@
                 <i class="fas fa-ellipsis-h"></i>
             </div>
             <div class="post-content">
-                私を紹介します
+                Happy birthday dear
                 <img src="./images/girl_with_light.jpg" alt="Mountains">
             </div>
             <div class="post-bottom">
                 <div class="action">
                     <i class="far fa-thumbs-up"></i>
-                    <span>いいね！</span>
+                    <span>Like</span>
                 </div>
                 <div class="action">
                     <i class="far fa-comment"></i>
-                    <span>コメント</span>
+                    <span>Comment</span>
                 </div>
                 <div class="action">
                     <i class="fa fa-share"></i>
-                    <span>シェア</span>
+                    <span>Share</span>
                 </div>
             </div>
         </div>
@@ -114,9 +136,9 @@
 
         <div class="story-section">
 
-            <div class="story create">
+         <div class="story create">
                 <div class="dp-image">
-                    <img src="./images/自転車5.jpg" alt="Profile pic">
+                    <img src="./images/dp.jpg" alt="Profile pic">
                 </div>
                 <span class="dp-container">
                     <i class="fa fa-plus"></i>
@@ -124,20 +146,21 @@
                 <span class="name">Create Story</span>
             </div>
 
-            <!-- 현성 -->
-            <div class="story"
+
+                            <!-- 현성 -->
+                <div class="story"
                     data-name="Lee Hyeonseong"
                     data-photo="./images/현성_profile.jpg"
                     data-dp="./images/현성_profile.jpg"
                     data-mbti="ENFJ/ENTJ"
                     data-like="ORCA"
-                    data-review="LEE Hyeonseong">
+                    data-review="대충대충대충대충대충대충대충대충대충대충대충대충대충대충대충대충대충대충대충대충대충대충대충대충대충소감 소감소감소감소감소감소감소감소감소감소감소감소감">
                     <img src="./images/현성_profile.jpg" alt="">
                     <div class="dp-container"><img src="./images/현성_profile.jpg" alt=""></div>
                     <p class="name">Lee Hyeonseong</p>
                 </div>
 
-            <!-- 경연 -->
+                <!-- 경연 -->
                 <div class="story"
                     data-name="Lee Kyungyeon"
                     data-photo="./images/경연_profile.jpg"
@@ -163,7 +186,7 @@
                     <span class="name">Kim Jeongjae</span>
                 </div>
 
-            <!-- 승훈 -->
+                <!-- 승훈 -->
                 <div class="story"
                     data-name="Baek Seunghun"
                     data-photo="./images/승훈_profile.jpg"
@@ -177,10 +200,10 @@
                 </div>
         </div>
 
-        </div>
+       
     
     </div>
-
+      <script src="script.js"></script>
 <div id="storyModal" class="modal" aria-hidden="true">
   <div class="modal-backdrop" data-close="true"></div>
 
@@ -188,21 +211,19 @@
     <button class="modal-close" aria-label="Close" data-close="true">×</button>
 
     <div class="modal-media">
-      <div class="modal-profile">
+
         
-        <div class="modal-con">
+  
         <div class="modal-img-con">
           <img class="modal-img" src="" alt="">
         </div>
 
-    
-      </div>
-          <div class="modal-profile-con">
-          <p class="modal-field modal-name">NAME: </p><br>
-          <p class="modal-field modal-mbti">MBTI: </p><br>
-          <p class="modal-field modal-like">Like: </p><br>
+        <div class="modal-profile-con">
+          <p class="modal-field modal-name">NAME: </p>
+          <p class="modal-field modal-mbti">MBTI: </p>
+          <p class="modal-field modal-like">Like: </p>
         </div>
-      </div>
+ 
 
       <div class="modal-review">
         <p class="modal-review-text"></p>

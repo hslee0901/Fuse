@@ -71,8 +71,8 @@ nav .nav-middle a > i{
 
 nav .nav-right .profile, .container .left-panel .profile{
     background: url('./images/自転車5.jpg');
-    height:40px;
-    width:40px;
+    height:30px;
+    width:30px;
     background-size: cover;
     border-radius: 50%;
     cursor: pointer;
