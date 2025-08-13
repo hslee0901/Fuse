@@ -86,7 +86,85 @@ const initNavHover = () => {
   });
 };
 
-/* ================== 4) 헤더 로드 및 아이콘 변경 로직 ================== */
+/* ================== 다크 모드 토글 기능 ================== */
+
+// 다크 모드 초기화 함수
+function initDarkMode() {
+  // 저장된 다크 모드 설정 확인
+  const savedDarkMode = localStorage.getItem('darkMode');
+  const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  // 저장된 설정이 있으면 우선, 없으면 시스템 설정 따라감
+  const shouldEnableDarkMode = savedDarkMode === 'true' || (savedDarkMode === null && prefersDarkMode);
+  
+  if (shouldEnableDarkMode) {
+    document.body.classList.add('dark-mode');
+  }
+  
+  // 토글 버튼 상태 업데이트
+  updateToggleButton();
+}
+
+// 다크 모드 토글 함수
+function toggleDarkMode() {
+  const isDarkMode = document.body.classList.toggle('dark-mode');
+  
+  // localStorage에 설정 저장
+  localStorage.setItem('darkMode', isDarkMode);
+  
+  // 토글 버튼 상태 업데이트
+  updateToggleButton();
+  
+  // 부드러운 전환 효과
+  document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
+  setTimeout(() => {
+    document.body.style.transition = '';
+  }, 300);
+}
+
+// 토글 버튼 상태 업데이트
+function updateToggleButton() {
+  const toggleButton = document.getElementById('darkModeToggle');
+  const isDarkMode = document.body.classList.contains('dark-mode');
+  
+  if (toggleButton) {
+    const icon = toggleButton.querySelector('i');
+    if (isDarkMode) {
+      icon.className = 'fas fa-sun'; // 다크 모드일 때 해 아이콘
+      toggleButton.setAttribute('title', 'Switch to Light Mode');
+    } else {
+      icon.className = 'fas fa-moon'; // 라이트 모드일 때 달 아이콘
+      toggleButton.setAttribute('title', 'Switch to Dark Mode');
+    }
+  }
+}
+
+// 시스템 테마 변경 감지
+function watchSystemTheme() {
+  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  mediaQuery.addListener((e) => {
+    // 사용자가 수동으로 설정한 적이 없다면 시스템 테마를 따라감
+    if (!localStorage.getItem('darkMode')) {
+      if (e.matches) {
+        document.body.classList.add('dark-mode');
+      } else {
+        document.body.classList.remove('dark-mode');
+      }
+      updateToggleButton();
+    }
+  });
+}
+
+// 헤더 로드 후 다크 모드 버튼 이벤트 등록
+function initDarkModeToggle() {
+  const toggleButton = document.getElementById('darkModeToggle');
+  if (toggleButton) {
+    toggleButton.addEventListener('click', toggleDarkMode);
+    updateToggleButton();
+  }
+}
+
+// script.js의 기존 헤더 로드 함수 수정
 $(function () {
   $("#header-container").load("header.html", function () {
     initNavHover();
@@ -108,9 +186,32 @@ $(function () {
       }
     });
 
-    /* ✅ 헤더 로드 후 검색 버튼 이벤트 등록 */
+    // ✅ 헤더 로드 후 검색 및 다크 모드 기능 초기화
     initSearchFeature();
+    initDarkModeToggle(); // 다크 모드 토글 버튼 이벤트 등록
   });
+});
+
+// DOM 로드 완료 후 다크 모드 초기화
+document.addEventListener('DOMContentLoaded', () => {
+  initDarkMode();
+  watchSystemTheme();
+  
+  // 기존 모달 및 로딩 코드는 그대로 유지...
+  const loadingEl = document.getElementById('loading');
+  if (loadingEl) {
+    const hasLoaded = sessionStorage.getItem('hasLoadedOnce');
+    if (!hasLoaded) {
+      loadingEl.style.display = 'flex';
+      setTimeout(() => {
+        loadingEl.classList.add('hidden');
+        sessionStorage.setItem('hasLoadedOnce', 'true');
+        setTimeout(() => { loadingEl.remove(); }, 600);
+      }, 5000);
+    } else {
+      loadingEl.remove();
+    }
+  }
 });
 
 /* ================== 5) 검색 기능 추가 ================== */

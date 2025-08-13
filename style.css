@@ -391,3 +391,185 @@ font:bold;
 /* 클릭 가능 표시 */
 .story{ cursor:pointer; }
 .story.create{ cursor:default; }
+/* 다크 모드 전역 변수 */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #eeeeee;
+  --bg-tertiary: #f8f9fa;
+  --text-primary: #333333;
+  --text-secondary: #6c757d;
+  --border-color: #dee2e6;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --card-bg: #ffffff;
+}
+
+.dark-mode {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --bg-tertiary: #404040;
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+  --border-color: #404040;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --card-bg: #2d2d2d;
+}
+
+/* 전역 배경 및 텍스트 */
+body {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 컨테이너 다크 모드 */
+.dark-mode .container {
+  background: var(--bg-secondary);
+}
+
+/* 프로필 블록 다크 모드 */
+.dark-mode .fb-profile-block {
+  background: var(--card-bg);
+}
+
+.dark-mode .fb-profile-block-menu {
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+}
+
+.dark-mode .block-menu ul li a {
+  color: var(--text-primary);
+  border-right: 1px solid var(--border-color);
+}
+
+.dark-mode .block-menu ul li:first-child a {
+  border-left: 1px solid var(--border-color);
+}
+
+/* 포스트 카드 다크 모드 */
+.dark-mode .post {
+  background: var(--card-bg);
+  box-shadow: 0 2px 8px var(--shadow);
+  border: 1px solid var(--border-color);
+}
+
+.dark-mode .post .post-info .name {
+  color: var(--text-primary);
+}
+
+.dark-mode .post .post-info .time {
+  color: var(--text-secondary);
+}
+
+.dark-mode .post .post-content {
+  color: var(--text-primary);
+}
+
+.dark-mode .post .post-bottom {
+  border-top: 1px solid var(--border-color);
+}
+
+.dark-mode .post .post-bottom .action {
+  color: var(--text-primary);
+}
+
+.dark-mode .post .post-bottom .action:hover {
+  background: var(--bg-tertiary);
+}
+
+/* 스토리 카드 다크 모드 */
+.dark-mode .story {
+  box-shadow: 0 0 10px var(--shadow);
+  border: 2px solid var(--border-color);
+}
+
+/* 모달 다크 모드 */
+.dark-mode .modal-backdrop {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.dark-mode .modal-dialog {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+
+.dark-mode .modal-profile-con {
+  color: var(--text-primary);
+}
+
+.dark-mode .modal-profile-con .modal-field {
+  color: var(--text-primary);
+}
+
+.dark-mode .modal-review {
+  border-top: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.dark-mode .modal-close {
+  background: var(--text-primary);
+  color: var(--bg-primary);
+}
+
+/* 로딩 화면 다크 모드 */
+.dark-mode #loading {
+  background: var(--bg-primary);
+}
+
+.dark-mode .wave-text {
+  color: #4dabf7;
+}
+
+/* 왼쪽/오른쪽 패널 다크 모드 */
+.dark-mode .container .left-panel,
+.dark-mode .container .right-panel {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+
+.dark-mode .container .left-panel ul li {
+  color: var(--text-primary);
+}
+
+.dark-mode .container .left-panel ul li:hover {
+  background: var(--bg-tertiary);
+}
+
+.dark-mode .container .left-panel .footer-links a {
+  color: var(--text-secondary);
+}
+
+.dark-mode .right-panel .pages-section .page,
+.dark-mode .right-panel .friends-section .friend {
+  color: var(--text-primary);
+}
+
+.dark-mode .right-panel .pages-section .page:hover,
+.dark-mode .right-panel .friends-section .friend:hover {
+  background: var(--bg-tertiary);
+}
+
+/* 스크롤바 다크 모드 (웹킷 브라우저) */
+.dark-mode ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dark-mode ::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+.dark-mode ::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+}
+
+.dark-mode ::-webkit-scrollbar-thumb:hover {
+  background: var(--border-color);
+}
+
+/* 검색 결과 하이라이트 다크 모드 */
+.dark-mode mark {
+  background-color: #ffd43b;
+  color: #000000;
+  padding: 2px 4px;
+  border-radius: 3px;
+}

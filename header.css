@@ -69,14 +69,15 @@ nav .nav-middle a > i{
     font-size: 25px;
 }
 
+/* Profile image - 기본 이미지 설정 */
 nav .nav-right .profile, .container .left-panel .profile{
-    background: url('./images/自転車5.jpg');
+    background: url('./images/自転車5.jpg') center/cover;
     height:30px;
     width:30px;
-    background-size: cover;
     border-radius: 50%;
     cursor: pointer;
 }
+
 .container{
     flex-direction: column;
 }
@@ -117,12 +118,13 @@ nav .nav-right a > i{
   cursor: pointer;
 }
 
-/* 아이콘 기본 */
+/* Basic icon styles */
 .nav-item i {
   position: absolute;
   transition: opacity 0.3s ease;
 }
-/* ===== 기본 아이콘(블랙) ===== */
+
+/* Default black icons */
 .nav-item.profile-link img.custom-icon {
   content: url('./images/Profile_Black.png');
 }
@@ -136,7 +138,21 @@ nav .nav-right a > i{
   content: url('./images/Advice_Black.png');
 }
 
-/* ===== 현재 페이지 아이콘(컬러) ===== */
+/* Dark mode - invert black icons to white */
+body.dark-mode .nav-item.profile-link img.custom-icon {
+  filter: invert(1) brightness(100%) !important;
+}
+body.dark-mode .nav-item.company img.custom-icon {
+  filter: invert(1) brightness(100%) !important;
+}
+body.dark-mode .nav-item.life img.custom-icon {
+  filter: invert(1) brightness(100%) !important;
+}
+body.dark-mode .nav-item.advice img.custom-icon {
+  filter: invert(1) brightness(100%) !important;
+}
+
+/* Active page colored icons */
 .nav-item.profile-link.active-page img.custom-icon {
   content: url('./images/Profile.png');
 }
@@ -150,7 +166,21 @@ nav .nav-right a > i{
   content: url('./images/Advice.png');
 }
 
-/* ===== hover 시 아이콘 숨기고 label 표시 ===== */
+/* Dark mode - keep colored icons as original */
+.dark-mode .nav-item.profile-link.active-page img.custom-icon {
+  filter: none; /* Keep colored icons unchanged */
+}
+.dark-mode .nav-item.company.active-page img.custom-icon {
+  filter: none;
+}
+.dark-mode .nav-item.life.active-page img.custom-icon {
+  filter: none;
+}
+.dark-mode .nav-item.advice.active-page img.custom-icon {
+  filter: none;
+}
+
+/* Hide icons on hover and show labels */
 .nav-item.active img.custom-icon {
   opacity: 0;
 }
@@ -159,7 +189,7 @@ nav .nav-right a > i{
   transform: scale(1);
 }
 
-/* 아이콘 크기 */
+/* Icon size and positioning */
 .nav-item img.custom-icon {
   width: 30px;
   height: 30px;
@@ -168,7 +198,7 @@ nav .nav-right a > i{
   transition: opacity 0.3s ease;
 }
 
-/* 라벨 기본 숨김 */
+/* Label default hidden */
 .nav-item .label {
   position: absolute;
   opacity: 0;
@@ -178,13 +208,12 @@ nav .nav-right a > i{
   pointer-events: none;
 }
 
-/* hover 시 label 표시, 아이콘 숨김 */
+/* Show labels on hover, hide icons */
 .nav-item.active i {
   opacity: 0;
 }
 
-
-/* 양쪽 확산 효과 */
+/* Hover spread effects */
 .nav-item.left {
   transform: translateX(-30px);
 }
@@ -204,4 +233,114 @@ nav .nav-right a > i{
 }
 #searchBtn:hover {
   background-color: #3366cc;
+}
+
+/* Dark mode variables (header only) */
+:root {
+  --nav-bg-light: #ffffff;
+  --nav-text-light: #333333;
+  --nav-input-bg-light: #eeeeee;
+  --nav-shadow-light: rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode {
+  --nav-bg-dark: #1f1f1f;
+  --nav-text-dark: #ffffff;
+  --nav-input-bg-dark: #404040;
+  --nav-shadow-dark: rgba(0, 0, 0, 0.3);
+  --nav-border-dark: #404040;
+}
+
+/* Navigation bar dark mode */
+.dark-mode nav {
+  background-color: var(--nav-bg-dark) !important;
+  box-shadow: 0px 1px 3px var(--nav-shadow-dark);
+  border-bottom: 1px solid var(--nav-border-dark);
+}
+
+/* Search input dark mode */
+.dark-mode nav .nav-left > input {
+  background-color: var(--nav-input-bg-dark);
+  color: var(--nav-text-dark);
+  border: 1px solid var(--nav-border-dark);
+}
+
+.dark-mode nav .nav-left > input::placeholder {
+  color: #b3b3b3;
+}
+
+/* Navigation links dark mode */
+.dark-mode nav .nav-middle a {
+  color: var(--nav-text-dark);
+}
+
+/* Right navigation buttons dark mode */
+.dark-mode nav .nav-right a {
+  background: var(--nav-input-bg-dark);
+  color: var(--nav-text-dark);
+}
+
+/* Search button dark mode */
+.dark-mode #searchBtn {
+  background-color: #4dabf7;
+  border: 1px solid #4dabf7;
+}
+
+.dark-mode #searchBtn:hover {
+  background-color: #339af0;
+}
+
+/* Dark mode toggle button styles */
+#darkModeToggle {
+  position: relative;
+  background: #eeeeee;
+  border: 2px solid #dddddd;
+  color: #333333;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2rem;
+  margin-right: 1.5rem;
+}
+
+#darkModeToggle:hover {
+  background: #ffffff;
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+#darkModeToggle i {
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+#darkModeToggle:hover i {
+  transform: rotate(15deg);
+}
+
+/* Dark mode toggle button when active */
+.dark-mode #darkModeToggle {
+  background: var(--nav-input-bg-dark);
+  border: 2px solid var(--nav-border-dark);
+  color: var(--nav-text-dark);
+}
+
+.dark-mode #darkModeToggle:hover {
+  background: #555555;
+}
+
+/* Profile image dark mode - 다크 모드에서도 이미지 유지 */
+.dark-mode nav .nav-right .profile, 
+.dark-mode .container .left-panel .profile {
+  background: url('./images/自転車5.jpg') center/cover;
+      background: url('./images/自転車5.jpg') center/cover;
+    height:30px;
+    width:30px;
+    border-radius: 50%;
+    cursor: pointer;
 }
