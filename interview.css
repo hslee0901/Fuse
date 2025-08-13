@@ -746,3 +746,107 @@ body {
   border-radius: 3px;
 }
 
+/* 검색 결과 스타일링 */
+.search-results {
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.search-results h2 {
+  color: #333;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #eee;
+}
+
+.search-results p {
+  color: #666;
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+/* 검색어 하이라이트 스타일 */
+mark.search-highlight {
+  background-color: #ffeb3b;
+  color: #000;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-weight: bold;
+  animation: highlightPulse 2s ease-in-out;
+}
+
+@keyframes highlightPulse {
+  0% { background-color: #ffeb3b; }
+  50% { background-color: #ffc107; }
+  100% { background-color: #ffeb3b; }
+}
+
+/* 다크 모드에서의 검색 결과 스타일 */
+.dark-mode .search-results h2 {
+  color: #ffffff;
+  border-bottom-color: #404040;
+}
+
+.dark-mode .search-results p {
+  color: #b3b3b3;
+}
+
+/* 다크 모드에서의 하이라이트 스타일 */
+.dark-mode mark.search-highlight {
+  background-color: #ffa726;
+  color: #000;
+}
+
+@media (prefers-color-scheme: dark) {
+  .dark-mode mark.search-highlight {
+    background-color: #ffa726;
+  }
+}
+
+/* 검색 입력 필드 개선 */
+nav .nav-left > input {
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+nav .nav-left > input:focus {
+  border-color: royalblue;
+  box-shadow: 0 0 5px rgba(65, 105, 225, 0.3);
+}
+
+.dark-mode nav .nav-left > input:focus {
+  border-color: #4dabf7;
+  box-shadow: 0 0 5px rgba(77, 171, 247, 0.3);
+}
+
+/* 검색 버튼 개선 */
+#searchBtn {
+  transition: all 0.3s ease;
+}
+
+#searchBtn:active {
+  transform: scale(0.95);
+}
+
+/* 검색 결과가 없을 때의 스타일 */
+.search-results:has(h2:contains("검색 결과가 없습니다")) {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+  .search-results {
+    padding: 15px;
+    margin: 15px 0;
+  }
+  
+  .search-results h2 {
+    font-size: 18px;
+  }
+  
+  mark.search-highlight {
+    padding: 1px 2px;
+    font-size: 14px;
+  }
+}

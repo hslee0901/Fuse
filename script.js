@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
 /* ================== 3) 헤더 내 .nav-item 호버 ================== */
 const initNavHover = () => {
   const items = document.querySelectorAll('.nav-item');
@@ -164,6 +165,321 @@ function initDarkModeToggle() {
   }
 }
 
+/* ================== 통합 검색 기능 ================== */
+
+// 범용 포스트 그룹 생성 함수
+function makePostGroup(data) {
+  let html = '';
+
+  data.forEach(item => {
+    html += `
+      <div class="post-group">
+        <div class="post">
+          <div class="post-top">
+            <div class="dp"><img src="./images/logo.png" alt="logo"></div>
+            <div class="post-info">
+              <p class="name">布施啓</p>
+            </div>
+            <i class="fas fa-ellipsis-h"></i>
+          </div>
+          <div class="post-content">
+            ${item.post}
+          </div>
+          <div class="post-bottom">
+            <div class="action"><i class="far fa-thumbs-up"></i></div>
+          </div>
+        </div>
+    `;
+
+    if (item.qna && Array.isArray(item.qna)) {
+      item.qna.forEach(qa => {
+        if (qa.q) { // 질문이 있을 때만 출력
+          html += `
+        <div class="post qna">
+          <div class="post-top">
+            <div class="dp"><img src="./images/logo.png" alt="logo"></div>
+            <div class="post-info">
+              <p class="name">질문자</p>
+            </div>
+            <i class="fas fa-ellipsis-h"></i>
+          </div>
+          <div class="post-content">
+            <p>${qa.q}</p>
+          </div>
+          <div class="post-bottom">
+            <div class="action"><i class="far fa-thumbs-up"></i></div>
+          </div>
+        </div>
+      `;
+        }
+
+        if (qa.a) { // 답변이 있을 때만 출력
+          html += `
+        <div class="post qna answer">
+          <div class="post-top">
+            <div class="dp"><img src="./images/logo.png" alt="logo"></div>
+            <div class="post-info">
+              <p class="name">布施啓</p>
+            </div>
+            <i class="fas fa-ellipsis-h"></i>
+          </div>
+          <div class="post-content">
+            <p>${qa.a}</p>
+          </div>
+          <div class="post-bottom">
+            <div class="action"><i class="far fa-thumbs-up"></i></div>
+          </div>
+        </div>
+      `;
+        }
+      });
+    }
+
+    html += '</div>';
+  });
+
+  return html;
+}
+
+// 통합 검색 실행 함수
+async function performUnifiedSearch() {
+  const searchInput = document.getElementById('searchInput');
+  const query = searchInput.value.trim().toLowerCase();
+  
+  if (!query) {
+    alert('검색어를 입력해주세요.');
+    return;
+  }
+
+  // ✅ index.html용 검색 결과 표시 컨테이너를 명확하게 지정
+  let mainContainer = document.getElementById('interview-container');
+  
+  // interview-container가 없으면 (index.html에서) middle-panel 사용
+  if (!mainContainer) {
+    mainContainer = document.querySelector('.middle-panel');
+  }
+  
+  if (!mainContainer) {
+    console.error("검색 결과를 표시할 컨테이너를 찾을 수 없습니다.");
+    return;
+  }
+
+  // 로딩 표시
+  const loading = document.getElementById('loading');
+  if (loading) loading.style.display = 'flex';
+  
+  // 기존 하이라이트 제거
+  removeHighlights(document.body);
+  
+  try {
+    // 모든 JSON 데이터 로드
+    const [adviceResponse, companyResponse, lifeResponse] = await Promise.all([
+      fetch('./advice.json').catch(() => ({ json: () => [] })),
+      fetch('./company.json').catch(() => ({ json: () => [] })),
+      fetch('./life.json').catch(() => ({ json: () => [] }))
+    ]);
+
+    const adviceData = await adviceResponse.json?.() || [];
+    const companyData = await companyResponse.json?.() || [];
+    const lifeData = await lifeResponse.json?.() || [];
+
+    // 모든 데이터 합치기
+    const allData = [...adviceData, ...companyData, ...lifeData];
+
+    // ✅ index.html의 기존 포스트 내용도 검색에 포함
+    const indexPosts = [
+      {
+        post: "はじめまして！ 名前： 布施　啓 年齢： 55才 干支： 戌年 MBTI： ENFJ 出身地： 千葉県市川市 好きな食べ物：あん類 嫌いな食べ物：홍어회（フォンオフェ） 座右の銘： 楽をする、楽しむ為の努力は惜しまない 継続こそが成功の秘訣"
+      },
+      {
+        post: "家族： 妻1人、16才の娘、11才と8才の息子、私の両親の7人家族で生活していました。私が蔚山に単身赴任しているので、日本では、今は6人で生活しています。"
+      },
+      {
+        post: "趣味： ロードバイク　今は、蔚山のテファガンを往復で50km位走っています。TVドラマ鑑賞　最近のお気に入り（ホットスポット、イグナイト、なんで私が神説教)"
+      }
+    ];
+
+    // index.html 포스트와 JSON 데이터 합치기
+    const combinedData = [...allData, ...indexPosts];
+
+    // 검색어가 포함된 데이터 필터링
+    const filteredData = combinedData.filter(item => {
+      const postMatch = item.post?.toLowerCase().includes(query);
+      const qnaMatch = item.qna?.some(qnaItem =>
+        qnaItem.q?.toLowerCase().includes(query) ||
+        qnaItem.a?.toLowerCase().includes(query)
+      );
+      return postMatch || qnaMatch;
+    });
+
+    // 결과 표시
+    let resultsHtml = '';
+    if (filteredData.length > 0) {
+      resultsHtml = `<div class="search-results">
+        <h2>"${query}" 검색 결과: ${filteredData.length}개</h2>
+        ${makePostGroup(filteredData)}
+      </div>`;
+      
+      // 검색어 하이라이트
+      setTimeout(() => {
+        highlightText(document.body, query);
+      }, 100);
+    } else {
+      resultsHtml = `<div class="search-results">
+        <h2>"${query}"에 대한 검색 결과가 없습니다.</h2>
+        <p>다른 검색어를 시도해보세요.</p>
+      </div>`;
+    }
+
+    // ✅ index.html에서는 기존 content를 덮어쓰지 않고 검색 결과만 표시
+    if (window.location.pathname.includes('index.html') || window.location.pathname === '/') {
+      // 기존 컨텐츠를 숨기고 검색 결과만 표시
+      const existingContent = mainContainer.querySelectorAll('.post, .story-section, .fb-profile-block');
+      existingContent.forEach(el => el.style.display = 'none');
+      
+      // 검색 결과를 mainContainer에 추가
+      const searchContainer = document.createElement('div');
+      searchContainer.className = 'search-container';
+      searchContainer.innerHTML = resultsHtml;
+      mainContainer.appendChild(searchContainer);
+    } else {
+      // 다른 페이지에서는 기존처럼 전체 교체
+      mainContainer.innerHTML = resultsHtml;
+    }
+    
+    // 검색 결과로 스크롤
+    mainContainer.scrollIntoView({ behavior: 'smooth' });
+
+  } catch (error) {
+    console.error('검색 중 오류 발생:', error);
+    const errorHtml = `<div class="search-results">
+      <h2>검색 중 오류가 발생했습니다.</h2>
+      <p>잠시 후 다시 시도해주세요.</p>
+    </div>`;
+    
+    if (window.location.pathname.includes('index.html') || window.location.pathname === '/') {
+      const searchContainer = document.createElement('div');
+      searchContainer.className = 'search-container';
+      searchContainer.innerHTML = errorHtml;
+      mainContainer.appendChild(searchContainer);
+    } else {
+      mainContainer.innerHTML = errorHtml;
+    }
+  } finally {
+    if (loading) loading.style.display = 'none';
+  }
+}
+
+// ✅ 검색 초기화 함수 추가
+function resetSearch() {
+  // 검색 결과 컨테이너 제거
+  const searchContainers = document.querySelectorAll('.search-container');
+  searchContainers.forEach(container => container.remove());
+  
+  // 기존 컨텐츠 다시 표시
+  const hiddenContent = document.querySelectorAll('.post, .story-section, .fb-profile-block');
+  hiddenContent.forEach(el => el.style.display = '');
+  
+  // 하이라이트 제거
+  removeHighlights(document.body);
+  
+  // 검색창 초기화
+  const searchInput = document.getElementById('searchInput');
+  if (searchInput) searchInput.value = '';
+}
+
+// 텍스트 하이라이트 함수
+function highlightText(element, keyword) {
+  const regex = new RegExp(`(${keyword})`, 'gi');
+  const walker = document.createTreeWalker(
+    element, 
+    NodeFilter.SHOW_TEXT, 
+    {
+      acceptNode: function(node) {
+        // script, style 태그 내부는 제외
+        if (node.parentNode.tagName === 'SCRIPT' || node.parentNode.tagName === 'STYLE') {
+          return NodeFilter.FILTER_REJECT;
+        }
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    }, 
+    false
+  );
+  
+  const nodes = [];
+  while (walker.nextNode()) {
+    if (walker.currentNode.nodeValue && walker.currentNode.nodeValue.match(regex)) {
+      nodes.push(walker.currentNode);
+    }
+  }
+  
+  nodes.forEach(node => {
+    if (node.nodeValue && node.nodeValue.trim()) {
+      const span = document.createElement('span');
+      span.innerHTML = node.nodeValue.replace(regex, `<mark class="search-highlight">$1</mark>`);
+      node.parentNode.replaceChild(span, node);
+    }
+  });
+}
+
+// 하이라이트 제거 함수
+function removeHighlights(element) {
+  const marks = element.querySelectorAll('mark.search-highlight');
+  marks.forEach(mark => {
+    const parent = mark.parentNode;
+    parent.replaceChild(document.createTextNode(mark.textContent), mark);
+    parent.normalize(); // 인접한 텍스트 노드들을 합치기
+  });
+}
+
+// 첫 번째 하이라이트로 스크롤
+function scrollToFirstHighlight() {
+  const firstMark = document.querySelector('mark.search-highlight');
+  if (firstMark) {
+    firstMark.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
+    });
+  }
+}
+
+// 검색 기능 초기화
+function initSearchFeature() {
+  const searchBtn = document.getElementById('searchBtn');
+  const searchInput = document.getElementById('searchInput');
+
+  if (!searchBtn || !searchInput) return;
+
+  // 검색 버튼 클릭 이벤트
+  searchBtn.addEventListener('click', performUnifiedSearch);
+  
+  // 엔터키 검색 이벤트
+  searchInput.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      performUnifiedSearch();
+    }
+  });
+
+  // ✅ ESC 키로 검색 결과 초기화
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      resetSearch();
+    }
+  });
+
+  // 페이지 로드 시 저장된 검색어가 있으면 하이라이트
+  const storedKeyword = localStorage.getItem('searchKeyword');
+  if (storedKeyword) {
+    searchInput.value = storedKeyword;
+    setTimeout(() => {
+      highlightText(document.body, storedKeyword);
+      scrollToFirstHighlight();
+      localStorage.removeItem('searchKeyword');
+    }, 500);
+  }
+}
+
 // script.js의 기존 헤더 로드 함수 수정
 $(function () {
   $("#header-container").load("header.html", function () {
@@ -196,109 +512,4 @@ $(function () {
 document.addEventListener('DOMContentLoaded', () => {
   initDarkMode();
   watchSystemTheme();
-  
-  // 기존 모달 및 로딩 코드는 그대로 유지...
-  const loadingEl = document.getElementById('loading');
-  if (loadingEl) {
-    const hasLoaded = sessionStorage.getItem('hasLoadedOnce');
-    if (!hasLoaded) {
-      loadingEl.style.display = 'flex';
-      setTimeout(() => {
-        loadingEl.classList.add('hidden');
-        sessionStorage.setItem('hasLoadedOnce', 'true');
-        setTimeout(() => { loadingEl.remove(); }, 600);
-      }, 5000);
-    } else {
-      loadingEl.remove();
-    }
-  }
 });
-
-/* ================== 5) 검색 기능 추가 ================== */
-function initSearchFeature() {
-  const searchBtn = document.getElementById('searchBtn');
-  const searchInput = document.getElementById('searchInput');
-
-  if (!searchBtn || !searchInput) return;
-
-  searchBtn.addEventListener('click', () => {
-    removeHighlights(document.body);
-
-    const keyword = searchInput.value.trim();
-    if (!keyword) return;
-
-    const pages = ['index.html', 'company.html', 'life.html', 'advice.html'];
-    const currentPage = location.pathname.split("/").pop() || "index.html";
-
-    let targetPage = null;
-
-    Promise.all(
-      pages.map(page =>
-        fetch(page)
-          .then(res => res.text())
-          .then(html => {
-            if (!targetPage && html.includes(keyword)) {
-              targetPage = page;
-            }
-          })
-          .catch(err => console.error(`Failed to fetch ${page}:`, err))
-      )
-    ).then(() => {
-      if (targetPage) {
-        if (targetPage === currentPage) {
-          // 현재 페이지이면 페이지 이동 없이 바로 강조 + 스크롤
-          highlightText(document.body, keyword);
-          scrollToFirstHighlight();
-        } else {
-          // 다른 페이지면 localStorage 저장 후 페이지 이동
-          localStorage.setItem('searchKeyword', keyword);
-          window.location.href = targetPage + '#searchResult';
-        }
-      } else {
-        alert('검색 결과가 없습니다.');
-      }
-    });
-  });
-
-  // 페이지 로드 시 localStorage에 검색어가 있으면 강조 + 스크롤
-  const storedKeyword = localStorage.getItem('searchKeyword');
-  if (storedKeyword) {
-    highlightText(document.body, storedKeyword);
-    scrollToFirstHighlight();
-    localStorage.removeItem('searchKeyword');
-  }
-}
-
-function highlightText(element, keyword) {
-  const regex = new RegExp(`(${keyword})`, 'gi');
-  const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
-  const nodes = [];
-  while (walker.nextNode()) {
-    if (walker.currentNode.nodeValue.match(regex)) {
-      nodes.push(walker.currentNode);
-    }
-  }
-  nodes.forEach(node => {
-    const span = document.createElement('span');
-    span.innerHTML = node.nodeValue.replace(regex, `<mark>$1</mark>`);
-    node.parentNode.replaceChild(span, node);
-  });
-}
-
-// ✅ 첫 번째 <mark> 위치로 스크롤
-function scrollToFirstHighlight() {
-  const firstMark = document.querySelector('mark');
-  if (firstMark) {
-    firstMark.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center'
-    });
-  }
-}
-
-function removeHighlights(element) {
-  const marks = element.querySelectorAll('mark');
-  marks.forEach(mark => {
-    mark.replaceWith(document.createTextNode(mark.textContent));
-  });
-}

@@ -15,28 +15,7 @@
   <title>interview - Advice</title>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script>
-  $(function () {
-    $("#header-container").load("header.html", function () {
-      const items = document.querySelectorAll('.nav-item');
-
-      items.forEach((item, index) => {
-        item.addEventListener('mouseenter', () => {
-          items.forEach((el, i) => {
-            el.classList.remove('left', 'right', 'active');
-            if (i < index) el.classList.add('left');
-            else if (i > index) el.classList.add('right');
-            else el.classList.add('active');
-          });
-        });
-
-        item.addEventListener('mouseleave', () => {
-          items.forEach(el => el.classList.remove('left', 'right', 'active'));
-        });
-      });
-    });
-  });
-</script>
+<script src="script.js"></script>
 
 <body>
   <!-- 헤더 -->
