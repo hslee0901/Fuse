@@ -1,186 +1,90 @@
-<!-- company.html -->
+<!-- advice.html -->
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="header.css">
-    <title>interview</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="interview.css">
+  <link rel="stylesheet" href="header.css">
+  <title>interview - Advice</title>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="script.js"></script>
+<script>
+  $(function () {
+    $("#header-container").load("header.html", function () {
+      const items = document.querySelectorAll('.nav-item');
+
+      items.forEach((item, index) => {
+        item.addEventListener('mouseenter', () => {
+          items.forEach((el, i) => {
+            el.classList.remove('left', 'right', 'active');
+            if (i < index) el.classList.add('left');
+            else if (i > index) el.classList.add('right');
+            else el.classList.add('active');
+          });
+        });
+
+        item.addEventListener('mouseleave', () => {
+          items.forEach(el => el.classList.remove('left', 'right', 'active'));
+        });
+      });
+    });
+  });
+</script>
+
 <body>
-    <!-- 헤더 -->
-    <div id="header-container"></div>
-    
+  <!-- 헤더 -->
+  <div id="header-container"></div>
+
   <!-- 회사 소개 메인 콘텐츠 -->
-    <div class="container">
-        <div class="row">
-        <div class="col-md-12">
-            <div class="fb-profile-block">
-                <div class="fb-profile-block-thumb cover-container"></div>
-                <div class="profile-img">
-                    <a href="#">
-                        <img src="./images/自転車2.jpg" alt="" title="">        
-                    </a>
-                </div>
-                <div class="profile-name">
-                    <h2>布施　啓</h2>
-                </div>
-                
-                <div class="fb-profile-block-menu">
-                    <div class="block-menu">
-                        <ul>
-                            <li><a href="index.html">Profile</a></li>
-                            <li><a href="company.html">Company</a></li>
-                            <li><a href="life.html">Life</a></li>
-                            <li><a href="advice.html">Advice</a></li>
-                        </ul>
-                    </div>
+  <div class="container">
+    <div class="middle-group">
 
-                </div>
-            </div>
-        </div>
-    </div>
-  <div class="middle-panel">
+      <!-- 본문 -->
+      <div id="interview-container"></div>
 
 
+      <aside id="sideBar" class="sideBar">
+        <h3 class="subtitle">20대시절의 생활</h3>
+        <ul class="situmon">
+          <li>
+            <a href="#20-yarenakatta">해볼 걸 했던 일</a>
+          </li>
+          <li>
+            <a href="#20-siteyokatta">하면 좋은 것</a>
+          </li>
+          <li>
+            <a href="#arubaito">아르바이트 경험</a>
+          </li>
+          <li>
+            <a href="#yume">대학 시절 꿈</a>
+          </li>
+          <li>
+            <a href="#20-sigoto">하고싶었던 일</a>
+          </li>
+          <li>
+            <a href="#20-kioku">가장 기억에 남는 순간</a>
+          </li>
+          <li>
+            <a href="#syumi">취미</a>
+          </li>
+          <li>
+            <a href="#turakatta">힘들었던 순간</a>
+          </li>
+        </ul>
+      </aside>
 
-    <!-- 활동 소개 포스트 카드 -->
-    <div class="post">
-      <div class="post-top">
-        <div class="dp"><img src="./images/自転車2.jpg" alt="logo"></div>
-        <div class="post-info">
-          <p class="name">メガネパーティー運営チーム</p>
-          <span class="time">2025年8月</span>
-        </div>
-        <i class="fas fa-ellipsis-h"></i>
-      </div>
-      <div class="post-content">
-        <p>私たちは韓日交流を目的としたチームで、インタビュー・撮影・Web制作を通じて様々な人のストーリーを発信しています。</p>
-        <img src="./images/team_photo.jpg" alt="Team Photo">
-      </div>
-      <div class="post-bottom">
-        <div class="action"><i class="far fa-thumbs-up"></i><span>いいね！</span></div>
-        <div class="action"><i class="far fa-comment"></i><span>コメント</span></div>
-        <div class="action"><i class="fa fa-share"></i><span>シェア</span></div>
-      </div>
     </div>
 
-        <div class="post">
-      <div class="post-top">
-        <div class="dp"><img src="./images/自転車2.jpg" alt="logo"></div>
-        <div class="post-info">
-          <p class="name">メガネパーティー運営チーム</p>
-          <span class="time">2025年8月</span>
-        </div>
-        <i class="fas fa-ellipsis-h"></i>
-      </div>
-      <div class="post-content">
-        <p>私たちは韓日交流を目的としたチームで、インタビュー・撮影・Web制作を通じて様々な人のストーリーを発信しています。</p>
-        <img src="./images/team_photo.jpg" alt="Team Photo">
-      </div>
-      <div class="post-bottom">
-        <div class="action"><i class="far fa-thumbs-up"></i><span>いいね！</span></div>
-        <div class="action"><i class="far fa-comment"></i><span>コメント</span></div>
-        <div class="action"><i class="fa fa-share"></i><span>シェア</span></div>
-      </div>
-    </div>
-
-        <div class="story-section">
-
-
-
-
-                            <!-- 현성 -->
-                <div class="story"
-                    data-name="Lee Hyeonseong"
-                    data-photo="./images/현성_profile.jpg"
-                    data-dp="./images/현성_profile.jpg"
-                    data-mbti="ENFJ/ENTJ"
-                    data-like="ORCA"
-                    data-review="대충대충대충대충대충대충대충대충대충대충대충대충대충대충대충대충대충대충대충대충대충대충대충대충대충소감 소감소감소감소감소감소감소감소감소감소감소감소감">
-                    <img src="./images/현성_profile.jpg" alt="">
-                    <div class="dp-container"><img src="./images/현성_profile.jpg" alt=""></div>
-                    <p class="name">Lee Hyeonseong</p>
-                </div>
-
-                <!-- 경연 -->
-                <div class="story"
-                    data-name="Lee Kyungyeon"
-                    data-photo="./images/경연_profile.jpg"
-                    data-dp="./images/경연_profile.jpg"
-                    data-mbti="ISFJ"
-                    data-like="Travel"
-                    data-review="Reliable teammate">
-                    <img src="./images/경연_profile.jpg" alt="">
-                    <span class="dp-container"><img src="./images/경연_profile.jpg" alt=""></span>
-                    <span class="name">Lee Kyungyeon</span>
-                </div>
-
-                <!-- 정재 (이름/사진 맞게 수정) -->
-                <div class="story"
-                    data-name="Kim Jeongjae"
-                    data-photo="./images/정재_profile.jpg"
-                    data-dp="./images/정재_profile.jpg"
-                    data-mbti="ENTP"
-                    data-like="Music"
-                    data-review="Always curious">
-                    <img src="./images/정재_profile.jpg" alt="Story image">
-                    <span class="dp-container"><img src="./images/정재_profile.jpg" alt="Profile pic"></span>
-                    <span class="name">Kim Jeongjae</span>
-                </div>
-
-                <!-- 승훈 -->
-                <div class="story"
-                    data-name="Baek Seunghun"
-                    data-photo="./images/승훈_profile.jpg"
-                    data-dp="./images/승훈_profile.jpg"
-                    data-mbti="ISTP"
-                    data-like="Sports"
-                    data-review="Calm and steady">
-                    <img src="./images/승훈_profile.jpg" alt="Story image">
-                    <span class="dp-container"><img src="./images/승훈_profile.jpg" alt="Profile pic"></span>
-                    <span class="name">Baek Seunghun</span>
-                </div>
-        </div>
-
-       
-    
-    </div>
-<div id="storyModal" class="modal" aria-hidden="true">
-  <div class="modal-backdrop" data-close="true"></div>
-
-  <div class="modal-dialog" role="dialog" aria-modal="true">
-    <button class="modal-close" aria-label="Close" data-close="true">×</button>
-
-    <div class="modal-media">
-
-        
-  
-        <div class="modal-img-con">
-          <img class="modal-img" src="" alt="">
-        </div>
-
-        <div class="modal-profile-con">
-          <p class="modal-field modal-name">NAME: </p>
-          <p class="modal-field modal-mbti">MBTI: </p>
-          <p class="modal-field modal-like">Like: </p>
-        </div>
- 
-
-      <div class="modal-review">
-        <p class="modal-review-text"></p>
-      </div>
-    </div>
   </div>
-</div>
+
 
 </body>
+<script src="advice.js"></script>
 </html>

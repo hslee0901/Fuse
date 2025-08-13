@@ -254,7 +254,6 @@
 .fb-profile-block-thumb{
   display:block; height:315px; overflow:hidden; position:relative; text-decoration:none;
 }
-.fb-profile-block-menu{ border:1px solid #d3d6db; border-radius:0 0 3px 3px; }
 .profile-img a{
   position:absolute; left:15px; bottom:15px; display:block;
   height:160px; width:160px; padding:1px; box-shadow:none; z-index:9;
@@ -476,39 +475,34 @@ body {
   background: var(--bg-tertiary);
 }
 
-/* 스토리 카드 다크 모드 */
+/* 스토리 카드 다크 모드 (변경 삭제) */
 .dark-mode .story {
-  box-shadow: 0 0 10px var(--shadow);
-  border: 2px solid var(--border-color);
+  /* 다크 모드에서 스토리 카드의 색상을 변경하지 않도록 기존 규칙 삭제 */
+  box-shadow:0 0 5px 5px #ddd;
+  border: none;
 }
 
-/* 모달 다크 모드 */
+/* 모달 다크 모드 (변경 삭제) */
 .dark-mode .modal-backdrop {
   background: rgba(0, 0, 0, 0.8);
 }
-
-.dark-mode .modal-dialog {
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-}
-
-.dark-mode .modal-profile-con {
-  color: var(--text-primary);
-}
-
-.dark-mode .modal-profile-con .modal-field {
-  color: var(--text-primary);
-}
-
+.dark-mode .modal-dialog,
+.dark-mode .modal-media,
 .dark-mode .modal-review {
-  border-top: 1px solid var(--border-color);
-  color: var(--text-primary);
+    /* 모달의 배경색을 변경하지 않음 */
+    background: white; 
+    border: none;
+}
+.dark-mode .modal-profile-con p,
+.dark-mode .modal-review p {
+    /* 모달 내 텍스트 색상을 검은색으로 고정 */
+    color: #333333 !important;
+}
+.dark-mode .modal-close {
+  background: #333333;
+  color: #fff;
 }
 
-.dark-mode .modal-close {
-  background: var(--text-primary);
-  color: var(--bg-primary);
-}
 
 /* 로딩 화면 다크 모드 */
 .dark-mode #loading {
