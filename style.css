@@ -81,7 +81,7 @@
 }
 .middle-panel .story-section .story:hover > img{ transform:scale(1.05); }
 
-/* 프로필 썸네일(동그라미) */
+/* 프로필 인네일(동그라미) */
 .middle-panel .story-section .story .dp-container{
   position:absolute;
   left:8px;
@@ -254,8 +254,14 @@
   background:-webkit-radial-gradient(bottom,#73D6F5 12%,#1E90FF);
   background:radial-gradient(at bottom,#73D6F5 12%,#1E90FF);
 }
+.cover-container img{
+  width: 100%; /* 컨테이너 너비에 맞춤 */
+  height: 100%; /* 컨테이너 높이에 맞춤 */
+  object-fit: cover; /* 이미지 비율을 유지하며 컨테이너를 완전히 덮도록 조정하고 넘치는 부분은 잘라냄 */
+  object-position: center 40%; /* 이미지의 중앙 상단 부분을 보이도록 조정 */
+}
 .fb-profile-block-thumb{
-  display:block; height:315px; overflow:hidden; position:relative; text-decoration:none;
+  display:block; height:450px; overflow:hidden; position:relative; text-decoration:none;
 }
 .profile-img a{
   position:absolute; left:15px; bottom:15px; display:block;
