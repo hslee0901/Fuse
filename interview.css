@@ -177,16 +177,17 @@
     padding:10px;
 }
 
-.post .post-top .dp{
-    width:40px;
-    height:40px;
+.post .post-top .dp {
+    width: 50px; /* 원의 크기 */
+    height: 50px;
     border-radius: 50%;
-    overflow:hidden;
+    overflow: hidden; /* 둥근 영역 밖 이미지 숨김 */
 }
 
-.post .post-top .dp > img{
-    width:100%;
-    cursor:pointer;
+.post .post-top .dp > img {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
 }
 
 .post .post-top .post-info{
