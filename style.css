@@ -603,3 +603,9 @@ body {
   padding: 2px 4px;
   border-radius: 3px;
 }
+
+.search-results {
+  /* 현재 700px으로 설정되어 있는 이 값을 더 큰 값으로 변경 */
+  max-width: 1500px; 
+  margin: 0 auto;
+}
