@@ -171,6 +171,32 @@
     margin: 10px;
 }
 
+.post-content img {
+  /* 이미지의 최대 가로 크기를 부모 요소에 맞춥니다. */
+  max-width: 100%;
+
+  /* 가로세로 비율을 유지하면서 높이를 자동으로 조절합니다. */
+  height: auto;
+
+  /* 이미지를 블록 요소로 만들고 가운데 정렬합니다. (선택 사항) */
+  display: block;
+  margin: 0 auto;
+
+}
+.post-content video {
+  /* 비디오의 최대 가로 크기를 부모 요소에 맞춥니다. */
+  max-width: 100%;
+
+  /* 가로세로 비율을 유지하면서 높이를 자동으로 조절합니다. */
+  height: auto;
+
+  /* 비디오 테두리를 둥글게 만듭니다. (선택 사항) */
+  border-radius: 10px;
+
+  /* 비디오에 그림자 효과를 추가합니다. (선택 사항) */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 .post .post-top{
     display:flex;
     align-items: center;
