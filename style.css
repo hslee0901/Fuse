@@ -51,6 +51,17 @@
   align-items:center;
 }
 
+/* 다크 모드에서 middle-panel 배경색 */
+.dark-mode .middle-panel {
+  background: #3a3a3a !important; /* 더 밝은 회색으로 변경하고 !important 추가 */
+  min-height: 100vh; /* 전체 높이 확보 */
+}
+
+/* 다크 모드에서 container 배경도 명시적으로 설정 */
+.dark-mode .container {
+  background: #3a3a3a !important; /* middle-panel과 동일한 색상 */
+}
+
 /* ===== Stories ===== */
 .middle-panel .story-section{
   display:flex;
@@ -81,7 +92,7 @@
 }
 .middle-panel .story-section .story:hover > img{ transform:scale(1.05); }
 
-/* 프로필 인네일(동그라미) */
+/* 프로필 썸네일(동그라미) */
 .middle-panel .story-section .story .dp-container{
   position:absolute;
   left:8px;
@@ -247,13 +258,13 @@
 /* 전역 hidden(다른 곳에서 사용 가능) */
 .hidden{ display:none; }
 
-/* ===== FB-like profile header (as-is) ===== */
-.fb-profile-block{ margin:auto; position:relative; width:100%; }
-.cover-container{
-  background:#1E90FF;
-  background:-webkit-radial-gradient(bottom,#73D6F5 12%,#1E90FF);
-  background:radial-gradient(at bottom,#73D6F5 12%,#1E90FF);
+/* ===== FB-like profile header (수정된 부분) ===== */
+.fb-profile-block{ 
+  margin:auto; 
+  position:relative; 
+  width:100%;
 }
+
 .cover-container img{
   width: 100%; /* 컨테이너 너비에 맞춤 */
   height: 100%; /* 컨테이너 높이에 맞춤 */
@@ -264,20 +275,31 @@
   display:block; height:450px; overflow:hidden; position:relative; text-decoration:none;
 }
 .profile-img a{
-  position:absolute; left:15px; bottom:15px; display:block;
-  height:160px; width:160px; padding:1px; box-shadow:none; z-index:9;
-  background:rgba(0,0,0,.3);
+  position:absolute; left:15px; bottom:-60px; display:block; /* bottom을 -60px로 변경 */
+  height:200px; width:160px; padding:1px; box-shadow:none; z-index:9;
+  background:transparent; /* 검은색 배경 제거 */
 }
 .profile-img img{
   background:#fff; border-radius:2px; box-shadow:0 1px 1px rgba(0,0,0,.07);
   height:158px; width:158px; padding:5px;
 }
-.profile-name{ position:absolute; left:200px; bottom:60px; }
+.profile-name{ position:absolute; left:200px; bottom:44px; } /* 메뉴 높이만큼 위로 조정 */
 .profile-name h2{
-  color:#fff; font-size:24px; font-weight:600; line-height:30px;
+  color:#333; font-size:24px; font-weight:600; line-height:30px; /* 색상을 검은색으로 변경 */
   max-width:275px; text-transform:uppercase; position:relative;
 }
-.fb-profile-block-menu{ height:44px; position:relative; width:100%; overflow:hidden; }
+
+/* 다크 모드에서 profile-name 색상 변경 */
+.dark-mode .profile-name h2 {
+  color: #ffffff !important; /* 다크 모드에서 흰색으로 변경 */
+}
+.fb-profile-block-menu{ 
+  height:44px; 
+  position:relative; 
+  width:100%; 
+  overflow:hidden;
+  margin-top: 50px; /* 메뉴를 적당히 아래로 이동 */
+}
 .block-menu{ clear:right; padding-left:205px; }
 .block-menu ul{ margin:0; padding:0; }
 .block-menu ul li{ display:inline-block; }
@@ -412,7 +434,7 @@ font:bold;
 }
 
 .dark-mode {
-  --bg-primary: #1a1a1a;
+  --bg-primary: #0f0f0f;  /* 더 어두운 검은색으로 변경 */
   --bg-secondary: #2d2d2d;
   --bg-tertiary: #404040;
   --text-primary: #ffffff;
@@ -424,9 +446,14 @@ font:bold;
 
 /* 전역 배경 및 텍스트 */
 body {
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-secondary); /* 다시 원래대로 */
   color: var(--text-primary);
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 다크 모드에서 body 배경을 더 어둡게 */
+.dark-mode body {
+  background-color: #1a1a1a !important; /* 어두운 회색으로 변경하고 !important 추가 */
 }
 
 /* 컨테이너 다크 모드 */
