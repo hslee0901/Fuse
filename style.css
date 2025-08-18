@@ -609,3 +609,35 @@ body {
   max-width: 1500px; 
   margin: 0 auto;
 }
+
+.profile-name,
+.fb-profile-block-menu {
+  border: 1px solid #ccc;
+  padding: 10px; /* 경계선과 내용 사이의 여백을 위해 추가 */
+}
+.block-menu {
+  display: flex;
+  flex-direction: column; /* 자식 요소들을 세로로 정렬 */
+  justify-content: center; /* 수직(세로) 방향으로 중앙 정렬 */
+  align-items: flex-start; /* 수평(가로) 방향으로 시작점(왼쪽)에 정렬 */
+  height: 100%;
+}
+.block-menu ul li a {
+  display: block; /* 링크를 블록 요소로 만들어 크기 조절이 가능하게 합니다. */
+  background-color: #f0f0f0; /* 배경색 */
+  color: #333; /* 글자색 */
+  padding:0px  5px; /* 내부 여백으로 버튼 크기를 키웁니다. */
+  border-radius: 25px; /* 모서리를 둥글게 만듭니다. */
+  text-decoration: none; /* 링크 밑줄 제거 */
+  text-align: center; /* 텍스트를 가운데 정렬합니다. */
+  margin: 5px; /* 버튼 간의 간격 */
+  transition: all 0.3s ease; /* 호버 효과를 부드럽게 만듭니다. */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 은은한 그림자 효과 */
+}
+
+/* 마우스를 올렸을 때의 효과 */
+.block-menu ul li a:hover {
+  background-color: #e0e0e0; /* 배경색을 약간 어둡게 변경 */
+  transform: translateY(-2px); /* 버튼을 살짝 위로 이동시켜 입체감을 줍니다. */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25); /* 그림자를 더 진하게 만듭니다. */
+}
