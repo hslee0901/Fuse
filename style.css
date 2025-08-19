@@ -641,8 +641,9 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25); /* 그림자를 더 진하게 만듭니다. */
 }
 
-/* 태블릿 화면 (768px 이하) */
+/* 태블릿 화면 (768px 이하) - 기존 코드와 통합 */
 @media (max-width: 768px) {
+  /* ===== 기본 레이아웃 변경 ===== */
   .container {
     flex-direction: column;
     align-items: stretch;
@@ -666,450 +667,13 @@ body {
     width: 100%;
   }
 
-  .middle-group {
-    flex-direction: column;
-    max-width: 100%;
-    gap: 20px;
-  }
-
-  .post-group {
-    width: 100%;
-    align-items: center;
-  }
-
-  .post {
-    margin: 10px 5px;
-  }
-
-  #sideBar {
-    position: static;
-    flex: none;
-    width: 100%;
-    margin: 20px 0;
-    margin-right: 0;
-    order: 2;
-  }
-
-  /* 스토리 섹션 조정 */
-  .middle-panel .story-section {
-    overflow-x: auto;
-    padding: 10px;
-  }
-
-  .middle-panel .story-section .story {
-    width: 100px;
-    height: 160px;
-    margin: 0px 3px;
-    flex-shrink: 0;
-  }
-
-  /* 프로필 블록 조정 */
-  .fb-profile-block-thumb {
-    height: 250px;
-  }
-
-  .profile-img a {
-    height: 120px;
-    width: 120px;
-    left: 10px;
-    bottom: 10px;
-  }
-
-  .profile-img img {
-    height: 118px;
-    width: 118px;
-  }
-
-  .profile-name {
-    left: 150px;
-    bottom: 40px;
-  }
-
-  .profile-name h2 {
-    font-size: 20px;
-    line-height: 24px;
-  }
-
-  .block-menu {
-    padding-left: 10px;
-  }
-
-  .block-menu ul li a {
-    padding: 0 12px;
-    font-size: 12px;
-  }
-
-  /* 네비게이션 조정 */
-  nav .nav-left > input {
-    width: 60%;
-  }
-}
-
-/* 모바일 화면 (480px 이하) */
-@media (max-width: 480px) {
-  .container {
-    padding: 0;
-  }
-
-  .container .left-panel,
-  .container .right-panel {
-    padding: 10px;
-    margin-top: 10px;
-  }
-
-  .middle-panel {
-    padding: 0 5px;
-  }
-
-  .post {
-    margin: 5px 0;
-    border-radius: 8px;
-  }
-
-  .post .post-content {
-    padding: 8px;
-    font-size: 14px;
-  }
-
-  .post .post-top {
-    padding: 8px;
-  }
-
-  .post .post-top .dp {
-    width: 40px;
-    height: 40px;
-  }
-
-  .post .post-top .post-info .name {
-    font-size: 14px;
-  }
-
-  .post .post-top .post-info .time {
-    font-size: 11px;
-  }
-
-  /* 스토리 섹션 모바일 최적화 */
-  .middle-panel .story-section {
-    padding: 5px;
-  }
-
-  .middle-panel .story-section .story {
-    width: 80px;
-    height: 130px;
-    margin: 0px 2px;
-  }
-
-  .middle-panel .story-section .story .dp-container {
-    width: 30px;
-    height: 30px;
-    top: 8px;
-    left: 8px;
-  }
-
-  .middle-panel .story-section .story .name {
-    font-size: 11px;
-    padding: 3px;
-  }
-
-  /* 프로필 블록 모바일 최적화 */
-  .fb-profile-block-thumb {
-    height: 200px;
-  }
-
-  .profile-img a {
-    height: 100px;
-    width: 100px;
-    left: 8px;
-    bottom: 8px;
-  }
-
-  .profile-img img {
-    height: 98px;
-    width: 98px;
-    padding: 3px;
-  }
-
-  .profile-name {
-    left: 120px;
-    bottom: 30px;
-  }
-
-  .profile-name h2 {
-    font-size: 18px;
-    line-height: 22px;
-    max-width: 200px;
-  }
-
-  .block-menu {
-    padding-left: 5px;
-    overflow-x: auto;
-  }
-
-  .block-menu ul {
-    white-space: nowrap;
-  }
-
-  .block-menu ul li a {
-    padding: 0 8px;
-    font-size: 11px;
-    line-height: 2.5;
-  }
-
-  /* 사이드바 모바일 최적화 */
-  #sideBar {
-    padding: 15px;
-    margin: 10px 5px;
-  }
-
-  .subtitle {
-    font-size: 16pt;
-    margin-bottom: 10px;
-  }
-
-  .subtitle img {
-    width: 25px;
-    left: 5px;
-  }
-
-  li {
-    margin-bottom: 8px;
-  }
-
-  a {
-    font-size: 11pt;
-    padding-left: 8px;
-  }
-
-  /* 로딩 화면 모바일 최적화 */
-  .wave-text span {
-    font-size: 12vw;
-  }
-
-  /* QnA 섹션 모바일 최적화 */
-  .qna,
-  .answer {
-    width: 98%;
-    margin-left: 1%;
-    padding: 10px;
-    border-radius: 8px;
-  }
-
-  /* 왼쪽, 오른쪽 패널 모바일에서 숨김 또는 축소 */
-  .container .left-panel ul li {
-    padding: 0.5rem 0.8rem;
-  }
-
-  .container .left-panel ul li > p {
-    margin-left: 8px;
-    font-size: 14px;
-  }
-
-  .container .left-panel ul li > i {
-    font-size: 18px;
-  }
-
-  .right-panel .pages-section,
-  .right-panel .friends-section {
-    margin: 0.5rem 0px;
-  }
-
-  .right-panel .pages-section .page,
-  .right-panel .friends-section .friend {
-    padding: 5px 8px;
-  }
-
-  .right-panel .pages-section .name,
-  .right-panel .friends-section .name {
-    font-size: 14px;
-    margin-left: 6px;
-  }
-
-  .right-panel .pages-section .page > .dp,
-  .right-panel .friends-section .friend > .dp {
-    height: 35px;
-    width: 35px;
-  }
-}
-
-/* 매우 작은 모바일 화면 (360px 이하) */
-@media (max-width: 360px) {
-  .post .post-top > input {
-    margin-left: 5px;
-    padding: 3px 8px;
-    font-size: 12px;
-  }
-
-  .middle-panel .story-section .story {
-    width: 70px;
-    height: 110px;
-  }
-
-  .middle-panel .story-section .story .dp-container {
-    width: 25px;
-    height: 25px;
-    top: 6px;
-    left: 6px;
-  }
-
-  .middle-panel .story-section .story .name {
-    font-size: 10px;
-    padding: 2px;
-  }
-
-  .profile-name h2 {
-    font-size: 16px;
-    line-height: 20px;
-    max-width: 150px;
-  }
-
-  .subtitle {
-    font-size: 14pt;
-  }
-
-  .subtitle img {
-    width: 20px;
-  }
-
-  a {
-    font-size: 10pt;
-  }
-
-  .post .post-bottom .action {
-    padding: 8px;
-    font-size: 12px;
-  }
-}
-
-/* 가로 방향 모바일 (landscape) */
-@media (max-width: 768px) and (orientation: landscape) {
-  .fb-profile-block-thumb {
-    height: 180px;
-  }
-
-  .profile-img a {
-    height: 80px;
-    width: 80px;
-  }
-
-  .profile-img img {
-    height: 78px;
-    width: 78px;
-  }
-
-  .profile-name {
-    left: 100px;
-    bottom: 20px;
-  }
-
-  .profile-name h2 {
-    font-size: 16px;
-    line-height: 20px;
-  }
-
-  .wave-text span {
-    font-size: 8vw;
-  }
-}
-
-/* 터치 디바이스를 위한 개선 */
-@media (hover: none) and (pointer: coarse) {
-  .container .left-panel ul li,
-  .right-panel .pages-section .page,
-  .right-panel .friends-section .friend,
-  .post .post-bottom .action {
-    padding: 12px;
-    min-height: 44px; /* iOS 권장 터치 타겟 크기 */
-  }
-
-  .middle-panel .story-section .story {
-    margin: 0px 4px; /* 터치하기 쉽도록 간격 증가 */
-  }
-
-  .block-menu ul li a {
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-/* 다크 모드 모바일 최적화 */
-@media (max-width: 768px) {
-  .dark-mode .container .left-panel,
-  .dark-mode .container .right-panel {
-    border: none;
-    border-top: 1px solid var(--border-color);
-  }
-
-  .dark-mode .post {
-    border-left: none;
-    border-right: none;
-    border-radius: 0;
-    margin: 0;
-    border-bottom: 1px solid var(--border-color);
-  }
-}
-
-/* 접근성 개선 - 고대비 모드 */
-@media (prefers-contrast: high) {
-  .post,
-  .story,
-  #sideBar {
-    border: 2px solid #000;
-  }
-
-  .dark-mode .post,
-  .dark-mode .story,
-  .dark-mode #sideBar {
-    border: 2px solid #fff;
-  }
-}
-
-/* 애니메이션 감소 설정 */
-@media (prefers-reduced-motion: reduce) {
-  .container .left-panel ul li,
-  .post .post-bottom .action,
-  .middle-panel .story-section .story > img,
-  .wave-text span {
-    transition: none;
-    animation: none;
-  }
-}
-
-/* ===== 모바일 반응형 CSS 추가 ===== */
-
-/* 태블릿 화면 (768px 이하) */
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .container .left-panel,
-  .container .right-panel {
-    position: static;
-    width: 100%;
-    height: auto;
-    order: 2;
-    margin-top: 20px;
-  }
-
-  .container .left-panel {
-    order: 3;
-  }
-
-  .middle-panel {
-    order: 1;
-    width: 100%;
-  }
-
-  /* 포스트 카드 조정 */
+  /* ===== 포스트 카드 조정 ===== */
   .post {
     width: 95%;
     margin: 20px auto;
   }
 
-  /* 스토리 섹션 조정 */
+  /* ===== 스토리 섹션 조정 ===== */
   .middle-panel .story-section {
     overflow-x: auto;
     padding: 10px;
@@ -1122,7 +686,7 @@ body {
     margin: 0;
   }
 
-  /* 프로필 블록 조정 */
+  /* ===== 프로필 블록 조정 ===== */
   .fb-profile-block-thumb {
     height: 250px;
   }
@@ -1167,7 +731,7 @@ body {
     margin: 2px;
   }
 
-  /* 모달 조정 */
+  /* ===== 모달 조정 ===== */
   .modal-dialog {
     width: 95vw;
     max-width: 95vw;
@@ -1182,10 +746,55 @@ body {
   .modal-img-con {
     height: 250px;
   }
+
+  /* ===== 기존 검색 결과 스타일 (유지) ===== */
+  .search-results {
+    padding: 15px;
+    margin: 15px 0;
+  }
+  
+  .search-results h2 {
+    font-size: 18px;
+  }
+  
+  mark.search-highlight {
+    padding: 1px 2px;
+    font-size: 14px;
+  }
+
+  /* ===== 다크 모드 태블릿 최적화 (통합) ===== */
+  .dark-mode .container .left-panel,
+  .dark-mode .container .right-panel {
+    border: none;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .dark-mode .post {
+    border-left: none;
+    border-right: none;
+    border-radius: 8px;
+    margin: 20px auto;
+    border: 1px solid var(--border-color);
+  }
+
+  .dark-mode .fb-profile-block-menu {
+    border: 1px solid var(--border-color);
+  }
+
+  .dark-mode .block-menu ul li a {
+    background: var(--card-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+  }
+
+  .dark-mode .block-menu ul li a:hover {
+    background: var(--bg-tertiary);
+  }
 }
 
 /* 모바일 화면 (480px 이하) */
 @media (max-width: 480px) {
+  /* ===== 기본 레이아웃 ===== */
   .container {
     padding: 0;
   }
@@ -1200,6 +809,7 @@ body {
     padding: 0 5px;
   }
 
+  /* ===== 포스트 카드 최적화 ===== */
   .post {
     width: 98%;
     margin: 10px auto;
@@ -1235,7 +845,12 @@ body {
     margin-left: 8px;
   }
 
-  /* 스토리 섹션 모바일 최적화 */
+  .post .post-bottom .action {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  /* ===== 스토리 섹션 모바일 최적화 ===== */
   .middle-panel .story-section {
     padding: 8px;
     gap: 6px;
@@ -1259,7 +874,7 @@ body {
     right: 6px;
   }
 
-  /* 프로필 블록 모바일 최적화 */
+  /* ===== 프로필 블록 모바일 최적화 ===== */
   .fb-profile-block-thumb {
     height: 180px;
   }
@@ -1325,12 +940,12 @@ body {
     line-height: 1.2;
   }
 
-  /* 로딩 화면 모바일 최적화 */
+  /* ===== 로딩 화면 모바일 최적화 ===== */
   .wave-text span {
     font-size: 12vw;
   }
 
-  /* 왼쪽, 오른쪽 패널 모바일에서 축소 */
+  /* ===== 사이드 패널 최적화 ===== */
   .container .left-panel ul li {
     padding: 0.5rem 0.8rem;
   }
@@ -1366,7 +981,7 @@ body {
     width: 35px;
   }
 
-  /* 모달 모바일 최적화 */
+  /* ===== 모달 모바일 최적화 ===== */
   .modal-dialog {
     width: 98vw;
     max-width: 98vw;
@@ -1441,11 +1056,11 @@ body {
 
   .post .post-bottom .action {
     padding: 6px;
-    font-size: 12px;
+    font-size: 11px;
   }
 }
 
-/* 가로 방향 모바일 (landscape) */
+/* 가로 방향 모바일 (landscape) - 개선된 버전 */
 @media (max-width: 768px) and (orientation: landscape) {
   .fb-profile-block-thumb {
     height: 160px;
@@ -1481,7 +1096,7 @@ body {
   }
 }
 
-/* 터치 디바이스를 위한 개선 */
+/* 터치 디바이스를 위한 개선 (기존 코드와 충돌 방지) */
 @media (hover: none) and (pointer: coarse) {
   .container .left-panel ul li,
   .right-panel .pages-section .page,
@@ -1500,41 +1115,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    touch-action: manipulation; /* 터치 최적화 */
   }
 }
 
-/* 다크 모드 모바일 최적화 */
-@media (max-width: 768px) {
-  .dark-mode .container .left-panel,
-  .dark-mode .container .right-panel {
-    border: none;
-    border-top: 1px solid var(--border-color);
-  }
-
-  .dark-mode .post {
-    border-left: none;
-    border-right: none;
-    border-radius: 8px;
-    margin: 10px auto;
-    border: 1px solid var(--border-color);
-  }
-
-  .dark-mode .fb-profile-block-menu {
-    border: 1px solid var(--border-color);
-  }
-
-  .dark-mode .block-menu ul li a {
-    background: var(--card-bg);
-    color: var(--text-primary);
-    border: 1px solid var(--border-color);
-  }
-
-  .dark-mode .block-menu ul li a:hover {
-    background: var(--bg-tertiary);
-  }
-}
-
-/* 접근성 개선 - 고대비 모드 */
+/* 접근성 개선 - 고대비 모드 (기존 코드와 통합) */
 @media (prefers-contrast: high) {
   .post,
   .story {
@@ -1545,26 +1130,43 @@ body {
   .dark-mode .story {
     border: 2px solid #fff;
   }
+
+  .block-menu ul li a {
+    border: 2px solid currentColor;
+  }
 }
 
-/* 애니메이션 감소 설정 */
+/* 애니메이션 감소 설정 (기존 코드와 통합) */
 @media (prefers-reduced-motion: reduce) {
   .container .left-panel ul li,
   .post .post-bottom .action,
   .middle-panel .story-section .story > img,
   .wave-text span,
   .block-menu ul li a {
-    transition: none;
-    animation: none;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  @keyframes wave {
+    0%, 100% { transform: none; }
   }
 }
 
-/* 인쇄 스타일 */
+/* 다크 모드 선호도 자동 감지 (추가 기능) */
+@media (prefers-color-scheme: dark) {
+  .dark-mode mark.search-highlight {
+    background-color: #ffa726;
+    color: #000;
+  }
+}
+
+/* 인쇄 스타일 (기존 코드와 통합) */
 @media print {
   .container .left-panel,
   .container .right-panel,
   .middle-panel .story-section,
-  #loading {
+  #loading,
+  .modal {
     display: none !important;
   }
 
@@ -1583,5 +1185,19 @@ body {
 
   .fb-profile-block {
     width: 100% !important;
+  }
+
+  .fb-profile-block-thumb {
+    height: 200px !important;
+  }
+}
+
+/* 고해상도 디스플레이 최적화 (추가 기능) */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .profile-img img,
+  .post .post-top .dp img,
+  .story .dp-container img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
   }
 }
