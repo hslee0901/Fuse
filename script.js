@@ -513,3 +513,42 @@ document.addEventListener('DOMContentLoaded', () => {
   initDarkMode();
   watchSystemTheme();
 });
+
+$(function () {
+  $("#header-container").load("header.html", function () {
+    initNavHover();
+    initSearchFeature();
+    initDarkModeToggle();
+
+    // ✅ 맨 아래로 스크롤 버튼 이벤트 등록
+    const scrollBtn = document.getElementById("scrollBottom");
+    if (scrollBtn) {
+      scrollBtn.addEventListener("click", () => {
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: "smooth"
+        });
+      });
+    }
+  });
+});
+
+// 맨 위로 스크롤 버튼
+const scrollTopBtn = document.getElementById("scrollTop");
+
+// 스크롤 시 버튼 표시/숨김
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) { // 스크롤이 300px 이상일 때만 표시
+    scrollTopBtn.style.display = "block";
+  } else {
+    scrollTopBtn.style.display = "none";
+  }
+});
+
+// 버튼 클릭 시 맨 위로 이동
+scrollTopBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});

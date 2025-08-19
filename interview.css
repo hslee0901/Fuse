@@ -796,6 +796,27 @@ nav .nav-left > input:focus {
   transform: scale(0.95);
 }
 
+#scrollTop {
+  position: fixed;
+  bottom: 20px;   /* 화면 아래에서 20px */
+  right: 20px;    /* 화면 오른쪽에서 20px */
+  background: #333;
+  color: #fff;
+  border: none;
+  padding: 12px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  display: none; /* 기본적으로 숨김 */
+  z-index: 9999;
+  transition: background 0.3s;
+}
+
+#scrollTop:hover {
+  background: #007bff;
+}
+
 /* ===== 통합 모바일 반응형 CSS ===== */
 
 /* 태블릿 화면 (1024px 이하) */
