@@ -506,4 +506,22 @@ scrollTopBtn.addEventListener("click", () => {
     top: 0,
     behavior: "smooth"
   });
+
+});
+
+
+// aside 부드러운 이동
+document.querySelectorAll('.scroll-link').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault(); // 기본 점프 이동 막기
+    const targetId = this.getAttribute('href'); 
+    const targetElement = document.querySelector(targetId);
+
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: 'smooth', // 부드럽게 이동
+        block: 'start'      // 상단에 맞춤
+      });
+    }
+  });
 });
