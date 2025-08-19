@@ -1,54 +1,93 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
-<title>エントリー</title>
-<style>
-body, html {
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
+    <title>エントリー</title>
+    <style>
+        body, html {
             height: 100%;
             margin: 0;
-            overflow: hidden; 
-            position: relative; /* 자식 요소의 기준점 역할을 하도록 설정 */
+            overflow: hidden;
+            position: relative;
+            font-family: Arial, sans-serif;
         }
+        
         .bg-image {
-            background-image: url('./images/단체 사진2.jpg'); 
+            background-image: url('./images/단체 사진2.jpg');
             height: 100%;
-            width: 100%; /* 너비를 100%로 설정 */
+            width: 100%;
             background-position: center;
             background-repeat: no-repeat;
-            background-size: contain;
+            background-size: cover;
+            filter: blur(8px); /* 배경 이미지를 더 흐릿하게 */
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        
+        .content-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            z-index: 10;
         }
+        
         .title {
-            position: absolute; /* 절대 위치 지정 */
-            top: 10%; /* 화면 상단에서 15% 위치 */
-            left: 50%;
-            transform: translateX(-50%); /* X축으로 가운데 정렬 */
-            font-size: 2em; 
-            color: black; /* 텍스트 색상 */
+            font-size: 6em; /* 타이틀 크기를 엄청 크게 */
+            color: white; /* 흰색으로 변경하여 가독성 향상 */
             text-align: center;
-            z-index: 10;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* 텍스트에 그림자 추가 */
+            font-weight: bold;
+            margin-bottom: 50px; /* 타이틀과 버튼 사이 간격 */
         }
+        
         .button {
-            position: absolute; /* 절대 위치 지정 */
-            bottom: 30%; /* 화면 하단에서 15% 위치 */
-            left: 50%;
-            transform: translateX(-50%); /* X축으로 가운데 정렬 */
-            padding: 10px 20px;
-            font-size: 1em;
+            padding: 15px 30px;
+            font-size: 1.5em;
             cursor: pointer;
-            z-index: 10;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 25px;
+            color: #333;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
         }
-</style>
+        
+        .button:hover {
+            background-color: rgba(255, 255, 255, 1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        /* 모바일 반응형 */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 3.5em;
+                margin-bottom: 30px;
+            }
+            
+            .button {
+                font-size: 1.2em;
+                padding: 12px 25px;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="bg-image">
-<div class="title">布施さんのSNS</div>
-<button class="button" onclick="location.href='Profile.html'">エントリー</button>
-</div>
+    <div class="bg-image"></div>
+    <div class="content-overlay">
+        <div class="title">布施さんのSNS</div>
+        <button class="button" onclick="location.href='Profile.html'">エントリー</button>
+    </div>
 </body>
 </html>
