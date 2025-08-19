@@ -6,7 +6,7 @@ function makePostGroup(data) {
       <div class="post-group" id=${item.asideId}>
         <div class="post">
           <div class="post-top">
-            <div class="dp"><img src="./images/logo.png" alt="logo"></div>
+            <div class="dp"><img src="./images/自転車2.jpg" alt="logo"></div>
             <div class="post-info">
               <p class="name">布施啓</p>
             </div>
