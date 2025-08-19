@@ -6,7 +6,7 @@ function makePostGroup(data) {
       <div class="post-group" id=${item.asideId}>
         <div class="post">
           <div class="post-top">
-            <div class="dp"><img src="./images/自転車2.jpg" alt="logo"></div>
+            <div class="dp"><img src="./images/自転車2.jpg"></div>
             <div class="post-info">
               <p class="name">布施啓</p>
             </div>
@@ -29,7 +29,7 @@ function makePostGroup(data) {
           <div class="post-top">
             <div class="dp"><img src="./images/logo.png" alt="logo"></div>
             <div class="post-info">
-              <p class="name">布施啓</p>
+              <p class="name">メガネパーティー</p>
             </div>
             <i class="fas fa-ellipsis-h"></i>
           </div>
@@ -47,9 +47,9 @@ function makePostGroup(data) {
           html += `
         <div class="post qna answer" id=${qa.asideId}>
           <div class="post-top">
-            <div class="dp"><img src="./images/logo.png" alt="logo"></div>
+            <div class="dp"><img src="./images/自転車2.jpg"></div>
             <div class="post-info">
-              <p class="name">メガネパーティー</p>
+              <p class="name">布施啓</p>
             </div>
             <i class="fas fa-ellipsis-h"></i>
           </div>
