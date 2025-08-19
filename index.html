@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -6,32 +7,42 @@
 <title>エントリー</title>
 <style>
 body, html {
-height: 100%;
-margin: 0;
-overflow: hidden; 
-}
-.bg-image {
-background-image: url('./images/단체 사진.jpg'); 
-height: 100%;
-background-position: center;
-background-repeat: no-repeat;
-background-size: contain;
-display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: column;
-color: white; 
-text-align: center;
-}
-.title {
-font-size: 2em; 
-margin-bottom: 20px;
-}
-.button {
-padding: 10px 20px;
-font-size: 1em;
-cursor: pointer;
-}
+            height: 100%;
+            margin: 0;
+            overflow: hidden; 
+            position: relative; /* 자식 요소의 기준점 역할을 하도록 설정 */
+        }
+        .bg-image {
+            background-image: url('./images/단체 사진2.jpg'); 
+            height: 100%;
+            width: 100%; /* 너비를 100%로 설정 */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .title {
+            position: absolute; /* 절대 위치 지정 */
+            top: 10%; /* 화면 상단에서 15% 위치 */
+            left: 50%;
+            transform: translateX(-50%); /* X축으로 가운데 정렬 */
+            font-size: 2em; 
+            color: black; /* 텍스트 색상 */
+            text-align: center;
+            z-index: 10;
+        }
+        .button {
+            position: absolute; /* 절대 위치 지정 */
+            bottom: 30%; /* 화면 하단에서 15% 위치 */
+            left: 50%;
+            transform: translateX(-50%); /* X축으로 가운데 정렬 */
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            z-index: 10;
+        }
 </style>
 </head>
 <body>
