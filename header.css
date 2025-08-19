@@ -1,3 +1,4 @@
+
 *{
     margin:0;
     padding:0;
@@ -24,8 +25,8 @@ nav .nav-left, nav .nav-right{
 }
 
 nav .nav-left a img {
-    width: 30px; /* 원하는 크기로 조절 */
-    height: auto; /* 비율 유지를 위해 auto로 설정 */
+    width: 30px;
+    height: auto;
 }
 
 nav .nav-left > img{
@@ -74,7 +75,6 @@ nav .nav-middle a > i{
     font-size: 25px;
 }
 
-/* Profile image - 기본 이미지 설정 */
 nav .nav-right .profile, .container .left-panel .profile{
     background: url('./images/自転車5.jpg') center/cover;
     height:30px;
@@ -94,16 +94,16 @@ nav .nav-right a{
     width:40px;
     border-radius: 50%;
     background:#eee;
-    position: relative; /* 자식 요소의 기준점 역할을 하도록 변경 */
+    position: relative;
     margin-left:1rem;
 }
 
 nav .nav-right a > i{
     font-size:18px;
-    position: absolute; /* 부모 요소(<a>)를 기준으로 위치 지정 */
-    top: 50%; /* 부모 요소의 상단에서 50% 위치 */
-    left: 50%; /* 부모 요소의 왼쪽에서 50% 위치 */
-    transform: translate(-50%, -50%); /* 아이콘 자체 크기의 절반만큼 되돌려 완벽한 중앙 정렬 */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .nav-middle {
@@ -126,13 +126,11 @@ nav .nav-right a > i{
   cursor: pointer;
 }
 
-/* Basic icon styles */
 .nav-item i {
   position: absolute;
   transition: opacity 0.3s ease;
 }
 
-/* Default black icons */
 .nav-item.profile-link img.custom-icon {
   content: url('./images/Profile_Black.png');
 }
@@ -146,7 +144,6 @@ nav .nav-right a > i{
   content: url('./images/Advice_Black.png');
 }
 
-/* Dark mode - invert black icons to white */
 body.dark-mode .nav-item.profile-link img.custom-icon {
   filter: invert(1) brightness(100%) !important;
 }
@@ -160,7 +157,6 @@ body.dark-mode .nav-item.advice img.custom-icon {
   filter: invert(1) brightness(100%) !important;
 }
 
-/* Active page colored icons */
 .nav-item.profile-link.active-page img.custom-icon {
   content: url('./images/Profile.png');
 }
@@ -174,9 +170,8 @@ body.dark-mode .nav-item.advice img.custom-icon {
   content: url('./images/Advice.png');
 }
 
-/* Dark mode - keep colored icons as original */
 .dark-mode .nav-item.profile-link.active-page img.custom-icon {
-  filter: none; /* Keep colored icons unchanged */
+  filter: none;
 }
 .dark-mode .nav-item.company.active-page img.custom-icon {
   filter: none;
@@ -188,7 +183,6 @@ body.dark-mode .nav-item.advice img.custom-icon {
   filter: none;
 }
 
-/* Hide icons on hover and show labels */
 .nav-item.active img.custom-icon {
   opacity: 0;
 }
@@ -197,7 +191,6 @@ body.dark-mode .nav-item.advice img.custom-icon {
   transform: scale(1);
 }
 
-/* Icon size and positioning */
 .nav-item img.custom-icon {
   width: 30px;
   height: 30px;
@@ -206,7 +199,6 @@ body.dark-mode .nav-item.advice img.custom-icon {
   transition: opacity 0.3s ease;
 }
 
-/* Label default hidden */
 .nav-item .label {
   position: absolute;
   opacity: 0;
@@ -216,12 +208,10 @@ body.dark-mode .nav-item.advice img.custom-icon {
   pointer-events: none;
 }
 
-/* Show labels on hover, hide icons */
 .nav-item.active i {
   opacity: 0;
 }
 
-/* Hover spread effects */
 .nav-item.left {
   transform: translateX(-30px);
 }
@@ -243,7 +233,7 @@ body.dark-mode .nav-item.advice img.custom-icon {
   background-color: #3366cc;
 }
 
-/* Dark mode variables (header only) */
+/* Dark mode variables */
 :root {
   --nav-bg-light: #ffffff;
   --nav-text-light: #333333;
@@ -259,14 +249,12 @@ body.dark-mode .nav-item.advice img.custom-icon {
   --nav-border-dark: #404040;
 }
 
-/* Navigation bar dark mode */
 .dark-mode nav {
   background-color: var(--nav-bg-dark) !important;
   box-shadow: 0px 1px 3px var(--nav-shadow-dark);
   border-bottom: 1px solid var(--nav-border-dark);
 }
 
-/* Search input dark mode */
 .dark-mode nav .nav-left > input {
   background-color: var(--nav-input-bg-dark);
   color: var(--nav-text-dark);
@@ -277,18 +265,15 @@ body.dark-mode .nav-item.advice img.custom-icon {
   color: #b3b3b3;
 }
 
-/* Navigation links dark mode */
 .dark-mode nav .nav-middle a {
   color: var(--nav-text-dark);
 }
 
-/* Right navigation buttons dark mode */
 .dark-mode nav .nav-right a {
   background: var(--nav-input-bg-dark);
   color: var(--nav-text-dark);
 }
 
-/* Search button dark mode */
 .dark-mode #searchBtn {
   background-color: #4dabf7;
   border: 1px solid #4dabf7;
@@ -298,7 +283,6 @@ body.dark-mode .nav-item.advice img.custom-icon {
   background-color: #339af0;
 }
 
-/* Dark mode toggle button styles */
 #darkModeToggle {
   position: relative;
   background: #eeeeee;
@@ -331,7 +315,6 @@ body.dark-mode .nav-item.advice img.custom-icon {
   transform: rotate(15deg);
 }
 
-/* Dark mode toggle button when active */
 .dark-mode #darkModeToggle {
   background: var(--nav-input-bg-dark);
   border: 2px solid var(--nav-border-dark);
@@ -342,18 +325,15 @@ body.dark-mode .nav-item.advice img.custom-icon {
   background: #555555;
 }
 
-/* Profile image dark mode - 다크 모드에서도 이미지 유지 */
 .dark-mode nav .nav-right .profile, 
 .dark-mode .container .left-panel .profile {
   background: url('./images/自転車5.jpg') center/cover;
-      background: url('./images/自転車5.jpg') center/cover;
-    height:30px;
-    width:30px;
-    border-radius: 50%;
-    cursor: pointer;
+  height:30px;
+  width:30px;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
-/* 검색 결과 스타일링 */
 .search-results {
   padding: 20px;
   margin: 20px 0;
@@ -372,7 +352,6 @@ body.dark-mode .nav-item.advice img.custom-icon {
   margin: 10px 0;
 }
 
-/* 검색어 하이라이트 스타일 */
 mark.search-highlight {
   background-color: #ffeb3b;
   color: #000;
@@ -388,7 +367,6 @@ mark.search-highlight {
   100% { background-color: #ffeb3b; }
 }
 
-/* 다크 모드에서의 검색 결과 스타일 */
 .dark-mode .search-results h2 {
   color: #ffffff;
   border-bottom-color: #404040;
@@ -398,7 +376,6 @@ mark.search-highlight {
   color: #b3b3b3;
 }
 
-/* 다크 모드에서의 하이라이트 스타일 */
 .dark-mode mark.search-highlight {
   background-color: #ffa726;
   color: #000;
@@ -410,7 +387,6 @@ mark.search-highlight {
   }
 }
 
-/* 검색 입력 필드 개선 */
 nav .nav-left > input {
   transition: all 0.3s ease;
   border: 2px solid transparent;
@@ -426,7 +402,6 @@ nav .nav-left > input:focus {
   box-shadow: 0 0 5px rgba(77, 171, 247, 0.3);
 }
 
-/* 검색 버튼 개선 */
 #searchBtn {
   transition: all 0.3s ease;
 }
@@ -435,14 +410,149 @@ nav .nav-left > input:focus {
   transform: scale(0.95);
 }
 
-/* 검색 결과가 없을 때의 스타일 */
 .search-results:has(h2:contains("검색 결과가 없습니다")) {
   text-align: center;
   padding: 40px 20px;
 }
 
-/* 모바일 반응형 */
+/* ========================================
+   모바일 반응형 스타일
+   ======================================== */
+
+/* 모바일 메뉴 버튼 (기본적으로 숨김) */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+
+.dark-mode .mobile-menu-btn {
+  color: #fff;
+}
+
+/* 태블릿 (768px - 1024px) */
+@media (max-width: 1024px) {
+  nav {
+    padding: 0 1rem;
+  }
+  
+  .nav-middle {
+    gap: 20px;
+  }
+  
+  .nav-item {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .nav-item img.custom-icon {
+    width: 25px;
+    height: 25px;
+  }
+  
+  #darkModeToggle {
+    margin-left: 1rem;
+    margin-right: 0.5rem;
+  }
+}
+
+/* 모바일 (768px 이하) */
 @media (max-width: 768px) {
+  nav {
+    height: 60px;
+    padding: 0 0.5rem;
+  }
+  
+  /* 로고 크기 조정 */
+  nav .nav-left > img {
+    width: 30px;
+  }
+  
+  /* 검색창 숨기기 또는 크기 조정 */
+  nav .nav-left > input {
+    width: 120px;
+    height: 35px;
+    font-size: 14px;
+    margin-left: 5px;
+  }
+  
+  #searchBtn {
+    height: 35px;
+    padding: 0 10px;
+    font-size: 14px;
+  }
+  
+  /* 중앙 네비게이션 숨기기 */
+  .nav-middle {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    padding: 10px;
+    gap: 0;
+    justify-content: space-around;
+    z-index: 100;
+  }
+  
+  .dark-mode .nav-middle {
+    background: var(--nav-bg-dark);
+    border-top: 1px solid var(--nav-border-dark);
+  }
+  
+  /* 모바일에서 네비게이션 보이기 */
+  .nav-middle.mobile-visible {
+    display: flex;
+  }
+  
+  .nav-item {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .nav-item img.custom-icon {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .nav-item .label {
+    font-size: 10px;
+    bottom: -15px;
+  }
+  
+  /* 오른쪽 버튼들 크기 조정 */
+  nav .nav-right a {
+    width: 35px;
+    height: 35px;
+    margin-left: 0.5rem;
+  }
+  
+  nav .nav-right a > i {
+    font-size: 16px;
+  }
+  
+  #darkModeToggle {
+    width: 35px;
+    height: 35px;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+  
+  #darkModeToggle i {
+    font-size: 14px;
+  }
+  
+  nav .nav-right .profile {
+    width: 28px;
+    height: 28px;
+  }
+  
+  /* 검색 결과 스타일 조정 */
   .search-results {
     padding: 15px;
     margin: 15px 0;
@@ -452,8 +562,161 @@ nav .nav-left > input:focus {
     font-size: 18px;
   }
   
+  .search-results p {
+    font-size: 14px;
+  }
+  
   mark.search-highlight {
     padding: 1px 2px;
     font-size: 14px;
+  }
+}
+
+/* 작은 모바일 (480px 이하) */
+@media (max-width: 480px) {
+  nav {
+    height: 50px;
+  }
+  
+  /* 검색창 더 작게 또는 숨기기 */
+  nav .nav-left > input {
+    display: none;
+  }
+  
+  #searchBtn {
+    display: none;
+  }
+  
+  /* 모바일 검색 버튼 표시 */
+  .mobile-search-btn {
+    display: flex;
+    width: 35px;
+    height: 35px;
+    align-items: center;
+    justify-content: center;
+    background: #eee;
+    border-radius: 50%;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  
+  .dark-mode .mobile-search-btn {
+    background: var(--nav-input-bg-dark);
+  }
+  
+  /* 모바일 검색 모달 */
+  .mobile-search-modal {
+    display: none;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 98;
+  }
+  
+  .dark-mode .mobile-search-modal {
+    background: var(--nav-bg-dark);
+  }
+  
+  .mobile-search-modal.active {
+    display: block;
+  }
+  
+  .mobile-search-modal input {
+    width: 100%;
+    height: 40px;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    outline: none;
+    background-color: #eee;
+  }
+  
+  .dark-mode .mobile-search-modal input {
+    background-color: var(--nav-input-bg-dark);
+    color: var(--nav-text-dark);
+    border: 1px solid var(--nav-border-dark);
+  }
+  
+  /* 하단 네비게이션 바 스타일 개선 */
+  .nav-middle {
+    height: 60px;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dark-mode .nav-middle {
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* 매우 작은 화면 (320px 이하) */
+@media (max-width: 320px) {
+  nav .nav-left > img {
+    width: 25px;
+  }
+  
+  nav .nav-right a,
+  #darkModeToggle {
+    width: 30px;
+    height: 30px;
+    margin-left: 0.3rem;
+  }
+  
+  nav .nav-right a > i,
+  #darkModeToggle i {
+    font-size: 12px;
+  }
+  
+  .nav-item {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .nav-item img.custom-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* 가로 모드 대응 */
+@media (max-height: 500px) and (orientation: landscape) {
+  nav {
+    height: 50px;
+  }
+  
+  .nav-middle {
+    height: 50px;
+  }
+}
+
+/* 터치 기기 대응 */
+@media (hover: none) and (pointer: coarse) {
+  /* 호버 효과 제거 */
+  .nav-item:hover {
+    transform: none;
+  }
+  
+  #darkModeToggle:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  #searchBtn:hover {
+    background-color: royalblue;
+  }
+  
+  .dark-mode #searchBtn:hover {
+    background-color: #4dabf7;
+  }
+}
+
+/* 접근성 개선 */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
   }
 }
