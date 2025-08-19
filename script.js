@@ -493,7 +493,7 @@ const scrollTopBtn = document.getElementById("scrollTop");
 
 // 스크롤 시 버튼 표시/숨김
 window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) {
+  if (window.scrollY > 0) {
     scrollTopBtn.style.display = "block";
   } else {
     scrollTopBtn.style.display = "none";
