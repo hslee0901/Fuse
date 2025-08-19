@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fillModal = (data) => {
       if (modalImg) {
         modalImg.src = data.photo || '';
-        modalImg.style.objectPosition = data.photo.includes('현성') ? '50% 50%' : '50% 30%';
+        modalImg.style.objectPosition = data.photo && data.photo.includes('현성') ? '50% 50%' : '50% 30%';
       }
       if (nameEl) nameEl.textContent = `NAME: ${data.name || ''}`;
       if (mbtiEl) mbtiEl.textContent = `MBTI: ${data.mbti || ''}`;
@@ -91,18 +91,15 @@ const initNavHover = () => {
 
 // 다크 모드 초기화 함수
 function initDarkMode() {
-  // 저장된 다크 모드 설정 확인
   const savedDarkMode = localStorage.getItem('darkMode');
   const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
   
-  // 저장된 설정이 있으면 우선, 없으면 시스템 설정 따라감
   const shouldEnableDarkMode = savedDarkMode === 'true' || (savedDarkMode === null && prefersDarkMode);
   
   if (shouldEnableDarkMode) {
     document.body.classList.add('dark-mode');
   }
   
-  // 토글 버튼 상태 업데이트
   updateToggleButton();
 }
 
@@ -110,13 +107,9 @@ function initDarkMode() {
 function toggleDarkMode() {
   const isDarkMode = document.body.classList.toggle('dark-mode');
   
-  // localStorage에 설정 저장
   localStorage.setItem('darkMode', isDarkMode);
-  
-  // 토글 버튼 상태 업데이트
   updateToggleButton();
   
-  // 부드러운 전환 효과
   document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
   setTimeout(() => {
     document.body.style.transition = '';
@@ -131,10 +124,10 @@ function updateToggleButton() {
   if (toggleButton) {
     const icon = toggleButton.querySelector('i');
     if (isDarkMode) {
-      icon.className = 'fas fa-sun'; // 다크 모드일 때 해 아이콘
+      icon.className = 'fas fa-sun';
       toggleButton.setAttribute('title', 'Switch to Light Mode');
     } else {
-      icon.className = 'fas fa-moon'; // 라이트 모드일 때 달 아이콘
+      icon.className = 'fas fa-moon';
       toggleButton.setAttribute('title', 'Switch to Dark Mode');
     }
   }
@@ -144,7 +137,6 @@ function updateToggleButton() {
 function watchSystemTheme() {
   const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
   mediaQuery.addListener((e) => {
-    // 사용자가 수동으로 설정한 적이 없다면 시스템 테마를 따라감
     if (!localStorage.getItem('darkMode')) {
       if (e.matches) {
         document.body.classList.add('dark-mode');
@@ -193,7 +185,7 @@ function makePostGroup(data) {
 
     if (item.qna && Array.isArray(item.qna)) {
       item.qna.forEach(qa => {
-        if (qa.q) { // 질문이 있을 때만 출력
+        if (qa.q) {
           html += `
         <div class="post qna">
           <div class="post-top">
@@ -213,7 +205,7 @@ function makePostGroup(data) {
       `;
         }
 
-        if (qa.a) { // 답변이 있을 때만 출력
+        if (qa.a) {
           html += `
         <div class="post qna answer">
           <div class="post-top">
@@ -251,10 +243,8 @@ async function performUnifiedSearch() {
     return;
   }
 
-  // ✅ index.html용 검색 결과 표시 컨테이너를 명확하게 지정
   let mainContainer = document.getElementById('interview-container');
   
-  // interview-container가 없으면 (index.html에서) middle-panel 사용
   if (!mainContainer) {
     mainContainer = document.querySelector('.middle-panel');
   }
@@ -264,15 +254,12 @@ async function performUnifiedSearch() {
     return;
   }
 
-  // 로딩 표시
   const loading = document.getElementById('loading');
   if (loading) loading.style.display = 'flex';
   
-  // 기존 하이라이트 제거
   removeHighlights(document.body);
   
   try {
-    // 모든 JSON 데이터 로드
     const [adviceResponse, companyResponse, lifeResponse] = await Promise.all([
       fetch('./advice.json').catch(() => ({ json: () => [] })),
       fetch('./company.json').catch(() => ({ json: () => [] })),
@@ -283,10 +270,8 @@ async function performUnifiedSearch() {
     const companyData = await companyResponse.json?.() || [];
     const lifeData = await lifeResponse.json?.() || [];
 
-    // 모든 데이터 합치기
     const allData = [...adviceData, ...companyData, ...lifeData];
 
-    // ✅ index.html의 기존 포스트 내용도 검색에 포함
     const indexPosts = [
       {
         post: "はじめまして！ 名前： 布施　啓 年齢： 55才 干支： 戌年 MBTI： ENFJ 出身地： 千葉県市川市 好きな食べ物：あん類 嫌いな食べ物：홍어회（フォンオフェ） 座右の銘： 楽をする、楽しむ為の努力は惜しまない 継続こそが成功の秘訣"
@@ -299,10 +284,8 @@ async function performUnifiedSearch() {
       }
     ];
 
-    // index.html 포스트와 JSON 데이터 합치기
     const combinedData = [...allData, ...indexPosts];
 
-    // 검색어가 포함된 데이터 필터링
     const filteredData = combinedData.filter(item => {
       const postMatch = item.post?.toLowerCase().includes(query);
       const qnaMatch = item.qna?.some(qnaItem =>
@@ -312,7 +295,6 @@ async function performUnifiedSearch() {
       return postMatch || qnaMatch;
     });
 
-    // 결과 표시
     let resultsHtml = '';
     if (filteredData.length > 0) {
       resultsHtml = `<div class="search-results">
@@ -320,7 +302,6 @@ async function performUnifiedSearch() {
         ${makePostGroup(filteredData)}
       </div>`;
       
-      // 검색어 하이라이트
       setTimeout(() => {
         highlightText(document.body, query);
       }, 100);
@@ -331,23 +312,18 @@ async function performUnifiedSearch() {
       </div>`;
     }
 
-    // ✅ index.html에서는 기존 content를 덮어쓰지 않고 검색 결과만 표시
-    if (window.location.pathname.includes('Profile.html') || window.location.pathname === '/') {
-      // 기존 컨텐츠를 숨기고 검색 결과만 표시
-      const existingContent = mainContainer.querySelectorAll('.post, .story-section, .fb-profile-block');
-      existingContent.forEach(el => el.style.display = 'none');
+    if (window.location.pathname.includes('Profile.html') || window.location.pathname === '/' || window.location.pathname.includes('index.html')) {
+      const existingContent = mainContainer.querySelectorAll('.post, .story-section, .fb-profile-block, .search-container');
+      existingContent.forEach(el => el.remove());
       
-      // 검색 결과를 mainContainer에 추가
       const searchContainer = document.createElement('div');
       searchContainer.className = 'search-container';
       searchContainer.innerHTML = resultsHtml;
       mainContainer.appendChild(searchContainer);
     } else {
-      // 다른 페이지에서는 기존처럼 전체 교체
       mainContainer.innerHTML = resultsHtml;
     }
     
-    // 검색 결과로 스크롤
     mainContainer.scrollIntoView({ behavior: 'smooth' });
 
   } catch (error) {
@@ -357,7 +333,7 @@ async function performUnifiedSearch() {
       <p>잠시 후 다시 시도해주세요.</p>
     </div>`;
     
-    if (window.location.pathname.includes('Profile.html') || window.location.pathname === '/') {
+    if (window.location.pathname.includes('Profile.html') || window.location.pathname === '/' || window.location.pathname.includes('index.html')) {
       const searchContainer = document.createElement('div');
       searchContainer.className = 'search-container';
       searchContainer.innerHTML = errorHtml;
@@ -370,20 +346,16 @@ async function performUnifiedSearch() {
   }
 }
 
-// ✅ 검색 초기화 함수 추가
+// 검색 초기화 함수 추가
 function resetSearch() {
-  // 검색 결과 컨테이너 제거
   const searchContainers = document.querySelectorAll('.search-container');
   searchContainers.forEach(container => container.remove());
   
-  // 기존 컨텐츠 다시 표시
   const hiddenContent = document.querySelectorAll('.post, .story-section, .fb-profile-block');
   hiddenContent.forEach(el => el.style.display = '');
   
-  // 하이라이트 제거
   removeHighlights(document.body);
   
-  // 검색창 초기화
   const searchInput = document.getElementById('searchInput');
   if (searchInput) searchInput.value = '';
 }
@@ -396,7 +368,6 @@ function highlightText(element, keyword) {
     NodeFilter.SHOW_TEXT, 
     {
       acceptNode: function(node) {
-        // script, style 태그 내부는 제외
         if (node.parentNode.tagName === 'SCRIPT' || node.parentNode.tagName === 'STYLE') {
           return NodeFilter.FILTER_REJECT;
         }
@@ -428,7 +399,7 @@ function removeHighlights(element) {
   marks.forEach(mark => {
     const parent = mark.parentNode;
     parent.replaceChild(document.createTextNode(mark.textContent), mark);
-    parent.normalize(); // 인접한 텍스트 노드들을 합치기
+    parent.normalize();
   });
 }
 
@@ -450,10 +421,8 @@ function initSearchFeature() {
 
   if (!searchBtn || !searchInput) return;
 
-  // 검색 버튼 클릭 이벤트
   searchBtn.addEventListener('click', performUnifiedSearch);
   
-  // 엔터키 검색 이벤트
   searchInput.addEventListener('keypress', (event) => {
     if (event.key === 'Enter') {
       event.preventDefault();
@@ -461,14 +430,12 @@ function initSearchFeature() {
     }
   });
 
-  // ✅ ESC 키로 검색 결과 초기화
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
       resetSearch();
     }
   });
 
-  // 페이지 로드 시 저장된 검색어가 있으면 하이라이트
   const storedKeyword = localStorage.getItem('searchKeyword');
   if (storedKeyword) {
     searchInput.value = storedKeyword;
@@ -480,47 +447,29 @@ function initSearchFeature() {
   }
 }
 
-// script.js의 기존 헤더 로드 함수 수정
+// ✅ 헤더 로드 로직과 활성화 아이콘 로직을 하나로 통합
 $(function () {
   $("#header-container").load("header.html", function () {
     initNavHover();
+    
+    // 현재 URL의 파일명 가져오기
+    let currentPage = location.pathname.split("/").pop();
+    if (currentPage === '' || currentPage === 'index.html') {
+      currentPage = 'Profile.html'; // 루트 또는 index.html일 경우 Profile.html을 현재 페이지로 간주
+    }
 
-    const currentPage = location.pathname.split("/").pop() || "Profile.html";
     const navItems = document.querySelectorAll("#header-container .nav-item");
 
     navItems.forEach(item => {
-      const link = item.getAttribute("href");
-      if (link && ((link === currentPage) || (currentPage === "Profile.html" && (link === "./" || link === "/")))) {
+      const link = item.getAttribute("href").split("/").pop(); // 링크의 파일명만 가져오기
+      if (link && link === currentPage) {
         item.classList.add("active-page");
-        const img = item.querySelector("img.custom-icon");
-        if (img) {
-          const srcUrl = new URL(img.src);
-          const filename = srcUrl.pathname.split("/").pop().replace("_Black", "");
-          const newSrc = srcUrl.origin + srcUrl.pathname.replace(srcUrl.pathname.split("/").pop(), filename);
-          img.src = newSrc;
-        }
       }
     });
 
-    // ✅ 헤더 로드 후 검색 및 다크 모드 기능 초기화
-    initSearchFeature();
-    initDarkModeToggle(); // 다크 모드 토글 버튼 이벤트 등록
-  });
-});
-
-// DOM 로드 완료 후 다크 모드 초기화
-document.addEventListener('DOMContentLoaded', () => {
-  initDarkMode();
-  watchSystemTheme();
-});
-
-$(function () {
-  $("#header-container").load("header.html", function () {
-    initNavHover();
+    // 헤더 로드 후 기능 초기화
     initSearchFeature();
     initDarkModeToggle();
-
-    // ✅ 맨 아래로 스크롤 버튼 이벤트 등록
     const scrollBtn = document.getElementById("scrollBottom");
     if (scrollBtn) {
       scrollBtn.addEventListener("click", () => {
@@ -533,12 +482,18 @@ $(function () {
   });
 });
 
+// DOM 로드 완료 후 다크 모드 초기화
+document.addEventListener('DOMContentLoaded', () => {
+  initDarkMode();
+  watchSystemTheme();
+});
+
 // 맨 위로 스크롤 버튼
 const scrollTopBtn = document.getElementById("scrollTop");
 
 // 스크롤 시 버튼 표시/숨김
 window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) { // 스크롤이 300px 이상일 때만 표시
+  if (window.scrollY > 300) {
     scrollTopBtn.style.display = "block";
   } else {
     scrollTopBtn.style.display = "none";
