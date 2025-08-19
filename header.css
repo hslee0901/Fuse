@@ -23,6 +23,11 @@ nav .nav-left, nav .nav-right{
     align-items: center;
 }
 
+nav .nav-left a img {
+    width: 30px; /* 원하는 크기로 조절 */
+    height: auto; /* 비율 유지를 위해 auto로 설정 */
+}
+
 nav .nav-left > img{
     width:40px;
 }
