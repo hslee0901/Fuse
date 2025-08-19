@@ -332,7 +332,7 @@ async function performUnifiedSearch() {
     }
 
     // ✅ index.html에서는 기존 content를 덮어쓰지 않고 검색 결과만 표시
-    if (window.location.pathname.includes('index.html') || window.location.pathname === '/') {
+    if (window.location.pathname.includes('Profile.html') || window.location.pathname === '/') {
       // 기존 컨텐츠를 숨기고 검색 결과만 표시
       const existingContent = mainContainer.querySelectorAll('.post, .story-section, .fb-profile-block');
       existingContent.forEach(el => el.style.display = 'none');
@@ -357,7 +357,7 @@ async function performUnifiedSearch() {
       <p>잠시 후 다시 시도해주세요.</p>
     </div>`;
     
-    if (window.location.pathname.includes('index.html') || window.location.pathname === '/') {
+    if (window.location.pathname.includes('Profile.html') || window.location.pathname === '/') {
       const searchContainer = document.createElement('div');
       searchContainer.className = 'search-container';
       searchContainer.innerHTML = errorHtml;
@@ -485,12 +485,12 @@ $(function () {
   $("#header-container").load("header.html", function () {
     initNavHover();
 
-    const currentPage = location.pathname.split("/").pop() || "index.html";
+    const currentPage = location.pathname.split("/").pop() || "Profile.html";
     const navItems = document.querySelectorAll("#header-container .nav-item");
 
     navItems.forEach(item => {
       const link = item.getAttribute("href");
-      if (link && ((link === currentPage) || (currentPage === "index.html" && (link === "./" || link === "/")))) {
+      if (link && ((link === currentPage) || (currentPage === "Profile.html" && (link === "./" || link === "/")))) {
         item.classList.add("active-page");
         const img = item.querySelector("img.custom-icon");
         if (img) {
