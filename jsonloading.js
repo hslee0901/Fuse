@@ -38,7 +38,7 @@ function makePostGroup(data) {
           html += `
           <div class="post qna">
             <div class="post-top">
-              <div class="dp"><img src="./images/logo.png" alt="logo"></div>
+              <div class="dp"><img src="./images/단체 사진2.jpg" alt="logo"></div>
               <div class="post-info">
                 <p class="name">メガネパーティー</p>
               </div>
