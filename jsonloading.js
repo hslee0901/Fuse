@@ -2,11 +2,16 @@ function makePostGroup(data) {
   let html = '';
 
   data.forEach(item => {
+    // item thumbs 확인
+    let itemThumbsIcon = ((item.thumbs || "").toLowerCase().trim() === "up")
+      ? '<i class="fas fa-thumbs-up full"></i>'
+      : '<i class="far fa-thumbs-up"></i>';
+
     html += `
-      <div class="post-group" id=${item.asideId}>
+      <div class="post-group" id="${item.asideId}">
         <div class="post">
           <div class="post-top">
-            <div class="dp"><img src="./images/自転車2.jpg"></div>
+            <div class="dp"><img src="./images/自転車2.jpg" alt="logo"></div>
             <div class="post-info">
               <p class="name">布施啓</p>
             </div>
@@ -16,61 +21,69 @@ function makePostGroup(data) {
             ${item.post}
           </div>
           <div class="post-bottom">
-            <div class="action"><i class="far fa-thumbs-up"></i></div>
+            <div class="action">${itemThumbsIcon}</div>
           </div>
         </div>
     `;
 
     if (item.qna && Array.isArray(item.qna)) {
       item.qna.forEach(qa => {
-        if (qa.q) { // 질문이 있을 때만 출력
+        // QA thumbs 확인
+        let aThumbsIcon = ((qa.thumbs || "").toLowerCase().trim() === "up")
+          ? '<i class="fas fa-thumbs-up full"></i>'
+          : '<i class="far fa-thumbs-up"></i>';
+
+        // 질문 출력
+        if (qa.q) {
           html += `
-        <div class="post qna">
-          <div class="post-top">
-            <div class="dp"><img src="./images/logo.png" alt="logo"></div>
-            <div class="post-info">
-              <p class="name">メガネパーティー</p>
+          <div class="post qna">
+            <div class="post-top">
+              <div class="dp"><img src="./images/logo.png" alt="logo"></div>
+              <div class="post-info">
+                <p class="name">メガネパーティー</p>
+              </div>
+              <i class="fas fa-ellipsis-h"></i>
             </div>
-            <i class="fas fa-ellipsis-h"></i>
+            <div class="post-content">
+              <p>${qa.q}</p>
+            </div>
+            <div class="post-bottom">
+              <div class="action">${aThumbsIcon}</div>
+            </div>
           </div>
-          <div class="post-content">
-            <p>${qa.q}</p>
-          </div>
-          <div class="post-bottom">
-            <div class="action"><i class="far fa-thumbs-up"></i></div>
-          </div>
-        </div>
-      `;
+          `;
         }
 
-        if (qa.a) { // 답변이 있을 때만 출력
+        // 답변 출력
+        if (qa.a) {
           html += `
-        <div class="post qna answer" id=${qa.asideId}>
-          <div class="post-top">
-            <div class="dp"><img src="./images/自転車2.jpg"></div>
-            <div class="post-info">
-              <p class="name">布施啓</p>
+          <div class="post qna answer" id="${qa.asideId}">
+            <div class="post-top">
+              <div class="dp"><img src="./images/自転車2.jpg" alt="logo"></div>
+              <div class="post-info">
+                <p class="name">布施啓</p>
+              </div>
+              <i class="fas fa-ellipsis-h"></i>
             </div>
-            <i class="fas fa-ellipsis-h"></i>
+            <div class="post-content">
+              <p>${qa.a}</p>
+            </div>
+            <div class="post-bottom">
+              <div class="action">${aThumbsIcon}</div>
+            </div>
           </div>
-          <div class="post-content">
-            <p>${qa.a}</p>
-          </div>
-          <div class="post-bottom">
-            <div class="action"><i class="far fa-thumbs-up"></i></div>
-          </div>
-        </div>
-      `;
+          `;
         }
       });
     }
 
-
-    html += '</div>';
+    html += '</div>'; // post-group 닫기
   });
 
   return html;
 }
+
+
 // 현재 페이지 파일 이름 가져오기
 const page = window.location.pathname.split('/').pop(); // ex) "advice.html"
 

@@ -516,7 +516,7 @@
   margin-bottom: 15px;
   width: 100%;
   font-size: 20pt;
-  color: #442d1d;
+  color: royalblue;
   font-weight: bold;
   display: flex;
   align-items: center;
@@ -531,14 +531,25 @@
   left: 10px;
 }
 
+
 li{
   list-style: none;
-  color: #442d1d;
+  color: black;
   margin-bottom: 10px;
   display: block;
   background-color: rgba(255, 255, 255, 0.6);
   text-align: center;
-  border-left: 2px solid #885e40a4;
+}
+
+hr{
+  max-width: 100%;
+  margin: 10px;
+  border: 1px solid rgba(141, 167, 243, 0.354) ;
+}
+
+
+.full{
+  color: royalblue;
 }
 
 a{
