@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (nameEl) nameEl.textContent = `NAME: ${data.name || ''}`;
       if (mbtiEl) mbtiEl.textContent = `MBTI: ${data.mbti || ''}`;
       if (likeEl) likeEl.textContent = `Like: ${data.like || ''}`;
-      if (reviewEl) reviewEl.textContent = data.review || '';
+      if (reviewEl) reviewEl.innerHTML = data.review || ''; 
       modal.classList.add('open');
       document.body.style.overflow = 'hidden';
     };
@@ -525,3 +525,4 @@ document.querySelectorAll('.scroll-link').forEach(link => {
     }
   });
 });
+
