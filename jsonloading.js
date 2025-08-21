@@ -13,7 +13,7 @@ function makePostGroup(data) {
           <div class="post-top">
             <div class="dp"><img src="./images/自転車2.jpg" alt="logo"></div>
             <div class="post-info">
-              <p class="name">布施啓</p>
+              <p class="name">布施　啓</p>
             </div>
             <i class="fas fa-ellipsis-h"></i>
           </div>
@@ -61,7 +61,7 @@ function makePostGroup(data) {
             <div class="post-top">
               <div class="dp"><img src="./images/自転車2.jpg" alt="logo"></div>
               <div class="post-info">
-                <p class="name">布施啓</p>
+                <p class="name">布施　啓</p>
               </div>
               <i class="fas fa-ellipsis-h"></i>
             </div>
