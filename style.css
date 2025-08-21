@@ -1299,12 +1299,16 @@
     margin: 12px auto 0 !important;
     width: calc(100% - 16px);       /* 살짝 안쪽으로 */
   }
-  .profile-img{
+    .profile-img{
   display: none !important;
   }
-   .profile-con{
-    display:none;
-   }
+
+  .profile-name{
+    display: none;
+  }
+  .fb-profile-block-menu{
+    display: none;
+  }
   /* 메뉴 버튼 가운데 정렬 */
   .block-menu {
     padding-left: 0 !important;
