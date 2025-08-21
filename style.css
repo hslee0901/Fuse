@@ -1234,29 +1234,8 @@
 
   @media (max-width: 450px) {
 
-  .profile-img{
-  display: none !important;
-  }
 
-  .profile-con{
-    justify-content: space-between;
     
-  }
-  .profile-name{
-  left: 5vw;
-  }
-  .fb-profile-block-menu{
-  left: 23vw;  
-  }
-  .profile-name h2{
-    font-size: 5vw;
-    margin-bottom: 10px;
-  }
-
-  .block-menu ul li a {
-    padding:0px  1.5vw; /* 내부 여백으로 버튼 크기를 키웁니다. */
-  }
-
 
   .wave-text span {
       font-size: 7vw;
@@ -1320,7 +1299,12 @@
     margin: 12px auto 0 !important;
     width: calc(100% - 16px);       /* 살짝 안쪽으로 */
   }
-
+  .profile-img{
+  display: none !important;
+  }
+   .profile-con{
+    display:none;
+   }
   /* 메뉴 버튼 가운데 정렬 */
   .block-menu {
     padding-left: 0 !important;
