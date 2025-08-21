@@ -1122,6 +1122,8 @@ body {
   }
 }
 
+
+
 /* 터치 디바이스를 위한 개선 (기존 코드와 충돌 방지) */
 @media (hover: none) and (pointer: coarse) {
   .container .left-panel ul li,
@@ -1227,3 +1229,45 @@ body {
     image-rendering: crisp-edges;
   }
 }
+
+
+
+@media (max-width: 450px) {
+
+.profile-img{
+display: none !important;
+}
+
+.profile-con{
+  justify-content: space-between;
+  
+}
+.profile-name{
+left: 5vw;
+}
+.fb-profile-block-menu{
+left: 23vw;  
+}
+.profile-name h2{
+  font-size: 5vw;
+  margin-bottom: 10px;
+}
+
+.block-menu ul li a {
+  padding:0px  1.5vw; /* 내부 여백으로 버튼 크기를 키웁니다. */
+}
+
+
+.wave-text span {
+    font-size: 7vw;
+
+}
+
+.post p{
+font-size: 3.6vw;
+}
+
+
+}
+
+
