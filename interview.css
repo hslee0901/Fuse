@@ -832,6 +832,59 @@ nav .nav-left > input:focus {
 #scrollTop:hover {
   background: #007bff;
 }
+.dark-mode #sideBar {
+  background: var(--card-bg);
+  color: var(--text-primary);
+}
+/* 기본 li 스타일 수정 */
+li {
+  list-style: none;
+  color: black;
+  margin-bottom: 10px;
+  display: block;
+  background-color: transparent; /* 회색 배경 제거 */
+  text-align: center;
+  padding: 8px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+/* 다크모드 사이드바 스타일 */
+.dark-mode #sideBar {
+  background: var(--card-bg);
+  color: var(--text-primary);
+}
+
+/* 다크모드 li 스타일 */
+.dark-mode li {
+  background-color: transparent; /* 회색 배경 완전 제거 */
+  color: var(--text-primary);
+}
+
+/* 다크모드 a 태그 스타일 */
+.dark-mode a {
+  color: #ffffff !important; /* 흰색으로 강제 설정 */
+}
+
+/* 다크모드 a 태그 hover 효과 */
+.dark-mode a:hover {
+  color: #4dabf7 !important; /* 호버 시 파란색 */
+}
+
+/* 다크모드 subtitle 스타일 */
+.dark-mode .subtitle {
+  color: #4dabf7; /* 파란색으로 설정 */
+}
+
+/* 다크모드 full 클래스 아이콘 스타일 */
+.dark-mode .full {
+  color: #4dabf7 !important;
+}
+
+/* li 호버 효과 (선택사항) */
+.dark-mode li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
 
 /* ===== 통합 모바일 반응형 CSS ===== */
 
