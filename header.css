@@ -738,3 +738,15 @@ nav .nav-left > input:focus {
     transition: none !important;
   }
 }
+
+
+@media (max-width: 450px) {
+.nav-middle {
+  gap: 15px;
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+}
