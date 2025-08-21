@@ -284,7 +284,7 @@
   background:#fff; border-radius:2px; box-shadow:0 1px 1px rgba(0,0,0,.07);
   height:158px; width:158px; padding:5px;
 }
-.profile-name{ position:absolute; left:200px; bottom:44px; } /* 메뉴 높이만큼 위로 조정 */
+.profile-name{ position:absolute; left:210px; bottom:44px; } /* 메뉴 높이만큼 위로 조정 */
 .profile-name h2{
   color:#333; font-size:24px; font-weight:600; line-height:30px; /* 색상을 검은색으로 변경 */
   max-width:275px; text-transform:uppercase; position:relative;
@@ -308,6 +308,7 @@
   float:left; padding:0 17px; height:42px; line-height:3;
   font-size:14px; font-weight:bold; white-space:nowrap; text-transform:capitalize;
   color:#4b4f56; border-right:1px solid #e9eaed;
+  background-color: rgb(249, 249, 249);
 }
 .block-menu ul li:first-child a{ border-left:1px solid #e9eaed; }
 
