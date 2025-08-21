@@ -512,6 +512,11 @@
   margin-right: 20vh;
 }
 
+.post-group[id],
+.post.qna.answer[id] {
+  scroll-margin-top: 70px;
+}
+
 .subtitle{
   margin-bottom: 15px;
   width: 100%;
