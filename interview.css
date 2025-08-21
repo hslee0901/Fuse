@@ -1570,3 +1570,19 @@ li {
     min-height: calc(100vh - 200px);
   }
 }
+
+
+
+@media (max-width: 480px) {
+.sideBar{
+  display: none;
+
+}
+.container{
+  
+  margin: 10PX;
+  margin-bottom: 30PX;
+}
+
+}
+
