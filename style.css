@@ -446,6 +446,10 @@ body {
 }
 
 /* 다크 모드에서 body 배경을 더 어둡게 */
+.dark-mode .block-menu ul li a{
+  background-color: #2d2d2d;
+}
+
 .dark-mode body {
   background-color: #1a1a1a !important; /* 어두운 회색으로 변경하고 !important 추가 */
 }
