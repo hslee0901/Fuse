@@ -52,17 +52,6 @@
   align-items:center;
 }
 
-/* 다크 모드에서 middle-panel 배경색 */
-.dark-mode .middle-panel {
-  background: #3a3a3a !important; /* 더 밝은 회색으로 변경하고 !important 추가 */
-  min-height: 100vh; /* 전체 높이 확보 */
-}
-
-/* 다크 모드에서 container 배경도 명시적으로 설정 */
-.dark-mode .container {
-  background: #3a3a3a !important; /* middle-panel과 동일한 색상 */
-}
-
 /* ===== Stories ===== */
 .middle-panel .story-section{
   display:flex;
@@ -372,9 +361,9 @@ margin-bottom: 3px;
 font:bold;
 }
 
-
 /* 이미지 칸이 상단 전체 높이를 따라가게 */
 .modal-img-con{
+  height:100%;
 
   width:auto;
   border-top-left-radius: 10px;
@@ -403,7 +392,7 @@ font:bold;
 
 /* 프로필 정보 그리드 */
 .modal-profile{ display:grid; grid-template-columns:3fr 2fr; gap:12px; height:100%; }
-.modal-img-con{ height:100%; }
+
 .modal-profile-con{ padding:8px; overflow:auto; }
 .modal-profile-con .modal-field{ margin:6px 0; }
 
@@ -541,7 +530,6 @@ body {
   color: #fff;
 }
 
-
 /* 로딩 화면 다크 모드 */
 .dark-mode #loading {
   background: var(--bg-primary);
@@ -611,7 +599,6 @@ body {
   max-width: 1500px; 
   margin: 0 auto;
 }
-
 
 .fb-profile-block-menu {
 /*   border: 1px solid #ccc; */
