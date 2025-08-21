@@ -1278,3 +1278,34 @@
   }
 
 
+/* == fix: mobile header alignment & overflow (≤ 480px) == */
+@media (max-width: 480px) {
+  /* 화면 가로 넘침 즉시 차단 */
+  html, body { max-width: 100%; overflow-x: hidden; }
+
+  /* 메뉴를 오른쪽으로 밀던 오프셋 제거 */
+  .fb-profile-block-menu {
+    left: auto !important;
+    margin: 12px auto 0 !important;
+    width: calc(100% - 16px);       /* 살짝 안쪽으로 */
+  }
+
+  /* 메뉴 버튼 가운데 정렬 */
+  .block-menu {
+    padding-left: 0 !important;
+    align-items: center !important;
+  }
+  .block-menu ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center !important;
+  }
+  .block-menu ul li a {
+    margin: 4px 6px;
+  }
+}
+
+/* 450px 이하에 남아있는 여백/오프셋 전부 정리 */
+@media (max-width: 450px) {
+  .fb-profile-block-menu { left: auto !important; }
+}
