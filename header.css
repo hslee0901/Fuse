@@ -750,3 +750,9 @@ nav .nav-left > input:focus {
   justify-content: center;
 }
 }
+@media (max-width: 480px) {
+  .nav-item.left,
+  .nav-item.right {
+    transform: none !important;
+  }
+}
