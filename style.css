@@ -1287,7 +1287,14 @@
 /* 450px 이하에 남아있는 여백/오프셋 전부 정리 */
 @media (max-width: 450px) {
   .fb-profile-block-menu { left: auto !important; }
+  .modal-media p{
+    font-size: 3.5vw;
+  }
+  .modal-img-con{
+    height: 300px;
+  }
 }
+
 
 @media (max-width: 655px) {
   /* 화면 가로 넘침 즉시 차단 */
