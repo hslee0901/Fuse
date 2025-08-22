@@ -1293,6 +1293,14 @@
   .modal-img-con{
     height: 300px;
   }
+    .story-section .story{
+    width:10px;
+  }
+
+.name {
+    font-size: 7.5px !important;
+}
+
 }
 
 
