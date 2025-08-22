@@ -155,8 +155,8 @@
       cursor: pointer;
   }
   .post .post-top .post-info{ margin-left:10px; font-weight:bold; }
-  .post .post-top .post-info .name{ cursor:pointer; font-size:16px; }
-  .post .post-top .post-info .time{ font-size:12px; cursor:pointer; }
+  .post .post-top .post-info .name{ cursor:pointer; font-size:22px; }
+  .post .post-top .post-info .time{ font-size:16px; cursor:pointer; }
 
   .post .post-top i{ margin-left:auto; cursor:pointer; }
 
@@ -165,7 +165,7 @@
     outline:none; border:none; flex:1; background:#eee; margin-left:10px;
   }
 
-  .post .post-content{ font-size:16px; font-weight:normal; padding:10px; }
+  .post .post-content{ font-size:20px; font-weight:normal; padding:10px; }
   .post .post-content > img{ width:100%; margin:5px 0; }
   .post-content img{
     border-radius: 8px;
