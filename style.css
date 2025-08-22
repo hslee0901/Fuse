@@ -63,7 +63,7 @@
   .middle-panel .story-section .story{
     position:relative;
     flex:0 0 auto;
-    width:120px;
+    width:8.9vw;
     aspect-ratio:9 / 16;
     border-radius:14px;
     overflow:hidden;
