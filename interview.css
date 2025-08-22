@@ -208,11 +208,11 @@
 
 .post .post-top .post-info .name{
     cursor:pointer;
-    font-size:16px;
+    font-size:22px;
 }
 
 .post .post-top .post-info .time{
-    font-size:12px;
+    font-size:16px;
     cursor:pointer;
 }
 
@@ -233,7 +233,7 @@
 }
 
 .post .post-content{
-    font-size:16px;
+    font-size:20px;
     font-weight:normal;
     padding:10px;
 }
