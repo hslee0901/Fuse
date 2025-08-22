@@ -168,7 +168,7 @@ function makePostGroup(data) {
       <div class="post-group">
         <div class="post">
           <div class="post-top">
-            <div class="dp"><img src="./images/logo.png" alt="logo"></div>
+            <div class="dp"><img src="./images/自転車2.jpg" alt="logo"></div>
             <div class="post-info">
               <p class="name">布施啓</p>
             </div>
@@ -189,9 +189,9 @@ function makePostGroup(data) {
           html += `
         <div class="post qna">
           <div class="post-top">
-            <div class="dp"><img src="./images/logo.png" alt="logo"></div>
+            <div class="dp"><img src="./images/단체 사진2.jpg" alt="logo"></div>
             <div class="post-info">
-              <p class="name">질문자</p>
+              <p class="name">メガネパーティー</p>
             </div>
             <i class="fas fa-ellipsis-h"></i>
           </div>
@@ -209,7 +209,7 @@ function makePostGroup(data) {
           html += `
         <div class="post qna answer">
           <div class="post-top">
-            <div class="dp"><img src="./images/logo.png" alt="logo"></div>
+            <div class="dp"><img src="./images/自転車2.jpg" alt="logo"></div>
             <div class="post-info">
               <p class="name">布施啓</p>
             </div>
@@ -525,4 +525,5 @@ document.querySelectorAll('.scroll-link').forEach(link => {
     }
   });
 });
+
 
